@@ -1,0 +1,36 @@
+# Compilación C
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dll
+build/
+bin/
+
+# PostgreSQL / extensión
+*.dylib
+*.control.bak
+
+# Docker
+*.log
+
+# Datos de prueba generados (van a pesar mucho, no se suben)
+data/
+*.csv
+*.dat
+
+# Python (si usan scripts de generación/benchmark)
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Variables de entorno / secretos
+.env
