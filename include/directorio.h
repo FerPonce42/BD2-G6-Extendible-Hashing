@@ -17,4 +17,7 @@ struct Directorio{
 
 struct Directorio* CrearDirectorio(int d, int tam_bucket);
 
+
+int buscar_llave(struct Directorio* dir, int llave);
+
 #endif

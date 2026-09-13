@@ -62,3 +62,32 @@ solo quiere APUNTAR. entonces los reduce a un puntero === (struct Bucket*)
 
     return directorio;
 }
+
+
+// ==========================================
+// TAREA 2.2: Función de búsqueda (Nicol)
+// ==========================================
+
+// Retorna 1 si encuentra la llave, 0 si no existe
+int buscar_llave(struct Directorio* dir, int llave) {
+    // 1. Usar la propia llave como hash 
+    int hash = llave;
+
+    // 2. Crear la máscara con la PROF_GLOBAL y obtener el índice
+    int mascara = (1 << dir->PROF_GLOBAL) - 1;
+    int indice = hash & mascara;
+
+    // 3. Obtener el puntero al bucket correcto usando ARR_BUCKETS
+    struct Bucket* bucket_actual = dir->ARR_BUCKETS[indice];
+
+    // 4. Buscar secuencialmente iterando hasta ELEM (elementos actuales)
+    for (int i = 0; i < bucket_actual->ELEM; i++) {
+        // Verificar si la llave en la posición i de ARR_CLAVES coincide
+        if (bucket_actual->ARR_CLAVES[i] == llave) {
+            return 1; // ¡Encontrado!
+        }
+    }
+    
+    return 0; // No encontrado en el bucket
+}
+
