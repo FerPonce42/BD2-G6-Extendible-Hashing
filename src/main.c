@@ -19,18 +19,12 @@ int main() {
 
     printf("[OK] Directorio creado correctamente\n");
 
-    /* Carga manual provisional */
-    d->ARR_BUCKETS[0]->ARR_CLAVES[0] = 4;
-    d->ARR_BUCKETS[0]->ELEM = 1;
 
-    d->ARR_BUCKETS[1]->ARR_CLAVES[0] = 5;
-    d->ARR_BUCKETS[1]->ELEM = 1;
-
-    d->ARR_BUCKETS[2]->ARR_CLAVES[0] = 6;
-    d->ARR_BUCKETS[2]->ELEM = 1;
-
-    d->ARR_BUCKETS[3]->ARR_CLAVES[0] = 7;
-    d->ARR_BUCKETS[3]->ELEM = 1;
+    printf("\nInsertando claves...\n");
+    insertar_llave(d, 4);
+    insertar_llave(d, 5);
+    insertar_llave(d, 6);
+    insertar_llave(d, 7);
 
     printf("\nBuscando claves existentes:\n");
 
