@@ -18,7 +18,7 @@ struct Bucket{
 */
 
 
-struct Bucket* CrearBucket(int tam){
+struct Bucket* CrearBucket(int tam, int d){
  
     struct Bucket* bucket = malloc(sizeof(struct Bucket)); // p hace un new Bucket; mirenlo como un new Nodo;
 
@@ -26,7 +26,7 @@ struct Bucket* CrearBucket(int tam){
     // inicializacion de atributos.
     bucket->TAM = tam;
     bucket->ELEM = 0;
-    bucket->PROF_LOCAL = 1;
+    bucket->PROF_LOCAL = d;
 
     bucket->ARR_CLAVES = malloc( bucket->TAM * sizeof(int)); // Aqui realmente se crea el arreglo para las claves.
 

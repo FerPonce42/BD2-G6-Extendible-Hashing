@@ -17,4 +17,8 @@ struct Directorio{
 
 struct Directorio* CrearDirectorio(int d, int tam_bucket);
 
+void liberar_directorio(struct Directorio* dir);
+
+
+
 #endif

@@ -15,7 +15,7 @@ struct Bucket{
 
 };
 
-struct Bucket* CrearBucket(int tam);
+struct Bucket* CrearBucket(int tam, int d);
 
 /*
 Fer: Información: 

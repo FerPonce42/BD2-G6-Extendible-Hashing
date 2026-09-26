@@ -2,36 +2,24 @@
 #include <stdlib.h>
 #include "../include/busqueda.h"
 
-//--------------------------------------------------
-// FUNCION DE BUSQUEDA DE CLAVE!
-//--------------------------------------------------
+struct Bucket* buscar_llave(struct Directorio* dir, int llave, bool* encontrado) {
 
-struct Bucket* buscar_llave(struct Directorio* dir, int llave) {
-    
-    // Guardianes de seguridad por si el directorio o el arreglo vienen nulos
-    if (!dir || !dir->ARR_BUCKETS) return NULL;
+    *encontrado = false;
 
-    int hash = llave;
+    if (dir == NULL || dir->ARR_BUCKETS == NULL) return NULL;
 
-    // 1 << N(veces que se mueve a la izquierda el 1) [ Lo que les expliqué en pizarra. La info esta tambien en el director.c en "2^d"]
-     // mini funcion hash para "enmascarar a nuestra CLAVE y ubicarla en el [i] del directorio "
-    
-    int indice = hash & ((1 << dir->PROF_GLOBAL) - 1); // FAMOSA funcion HASH
-    
-    // Fer:   Recuerden que en C++ -> % , pero en C -> &
-    // basicamente: llave modulo mascara
+    int indice = llave & ((1 << dir->PROF_GLOBAL) - 1); // funcion hash: ubica la casilla del directorio
 
-    struct Bucket* bucket_actual = dir->ARR_BUCKETS[indice]; // puntero hacia el bucket que corresponde
+    struct Bucket* bucket_actual = dir->ARR_BUCKETS[indice];
 
-    if (!bucket_actual) return NULL; // Guardián por si el bucket no existe
+    if (bucket_actual == NULL) return NULL;
 
-    for (int i = 0; i < bucket_actual->ELEM; i++) { // busqueda lineal simple para saber si la clave existe o no en el bucket.
-        
+    for (int i = 0; i < bucket_actual->ELEM; i++) {
         if (bucket_actual->ARR_CLAVES[i] == llave) {
-            return bucket_actual; // SI existe esa llave,ten la direccion donde está 
+            *encontrado = true;
+            return bucket_actual;
         }
     }
-    
-    return NULL; // No existe esa llave en el bucket (inserta!)
-}
 
+    return bucket_actual; // no existe, pero es el bucket donde debe insertarse
+}
