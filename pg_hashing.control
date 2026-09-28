@@ -1,0 +1,4 @@
+comment = 'Extensión de Extendible Hashing - Grupo 6'
+default_version = '1.0'
+module_pathname = '$libdir/pg_hashing'
+relocatable = true

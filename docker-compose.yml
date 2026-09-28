@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: bd2_g6_hashing
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: hashing_db
+    ports:
+      - "5432:5432"
