@@ -6,7 +6,7 @@
 -- solo un indice B-tree y necesitamos probar tambien el caso "sin indice".
 --
 -- Uso (desde la carpeta del proyecto):
---   psql -U postgres -d postgres -f sql/cargar_buses.sql
+--   psql -h localhost -U postgres -d hashing_db -f sql/cargar_buses.sql
 -- Para cargar otro archivo, cambiar el nombre en la linea del \copy.
 
 DROP TABLE IF EXISTS buses;

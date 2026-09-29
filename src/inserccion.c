@@ -4,35 +4,31 @@
 #include "../include/busqueda.h"
 #include "../include/split.h"
 
-void insertar_llave(struct Directorio* dir, int llave) {
+// seguridad para que el directorio no crezca sin control
+#define PROF_MAXIMA 24
 
-    if (dir == NULL || dir->ARR_BUCKETS == NULL) return;
+bool insertar_llave(struct Directorio* dir, int llave) {
+
+    if (dir == NULL || dir->ARR_BUCKETS == NULL) return false;
 
     bool encontrado;
     struct Bucket* bucket_actual = buscar_llave(dir, llave, &encontrado);
 
-    if (bucket_actual == NULL) return;
+    if (bucket_actual == NULL) return false;
 
-    if (encontrado) {
-        printf("[AVISO] La clave %d ya existe, no se inserta de nuevo\n", llave);
-        return;
-    }
+    if (encontrado) return false; // la clave ya existe, no se duplica
 
     if (bucket_actual->ELEM < bucket_actual->TAM) {
-
         bucket_actual->ARR_CLAVES[bucket_actual->ELEM] = llave;
         bucket_actual->ELEM++;
-
-        printf("[OK] Clave %d insertada (ELEM=%d/%d)\n",
-            llave, bucket_actual->ELEM, bucket_actual->TAM);
-
-    } else {
-
-        printf("[INFO] Bucket lleno, se necesita split para insertar la clave %d\n", llave);
-
-        int indice = llave & ((1 << dir->PROF_GLOBAL) - 1);
-        dividir_bucket(dir, indice);
-
-        insertar_llave(dir, llave); // reintenta luego del split
+        return true;
     }
+
+    // bucket lleno: split y reintento
+    if (dir->PROF_GLOBAL >= PROF_MAXIMA) return false;
+
+    int indice = llave & ((1 << dir->PROF_GLOBAL) - 1);
+    dividir_bucket(dir, indice);
+
+    return insertar_llave(dir, llave);
 }
