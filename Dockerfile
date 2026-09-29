@@ -1,8 +1,8 @@
-FROM postgres:15
+FROM postgres:18
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    postgresql-server-dev-15 \
+    postgresql-server-dev-18 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
