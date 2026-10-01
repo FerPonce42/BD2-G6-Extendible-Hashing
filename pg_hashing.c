@@ -27,6 +27,16 @@ Datum pg_insertar(PG_FUNCTION_ARGS)
 {
     int32 llave = PG_GETARG_INT32(0);
     bool ok = insertar_llave(obtener_directorio(), llave);
+    bool existe = false;
+
+    /* false puede ser "ya existia" o "no se pudo insertar": se distinguen aqui */
+    if (!ok) {
+        buscar_llave(obtener_directorio(), llave, &existe);
+        if (!existe)
+            ereport(ERROR,
+                    (errmsg("pg_insertar: no se pudo insertar la clave %d", llave),
+                     errdetail("Sin memoria o demasiadas claves con los mismos bits bajos (limite PROF_MAXIMA).")));
+    }
 
     PG_RETURN_BOOL(ok);
 }
