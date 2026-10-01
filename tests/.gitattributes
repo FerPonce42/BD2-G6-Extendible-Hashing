@@ -1,0 +1,5 @@
+# Que los scripts no cambien a CRLF en Windows (el .sh no correria dentro del contenedor Linux)
+*.sh  text eol=lf
+*.sql text eol=lf
+*.c   text eol=lf
+*.txt text eol=lf

@@ -1,0 +1,77 @@
+CREATE EXTENSION
+psql:tests/01_datasets.sql:13: NOTICE:  table "resultados_4_4" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+You are now connected to database "hashing_db" as user "postgres".
+>>> D1_secuencial_100000
+psql:tests/01_datasets.sql:28: NOTICE:  table "prueba" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+COPY 100000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+You are now connected to database "hashing_db" as user "postgres".
+>>> D2_aleatorio_100000
+DROP TABLE
+CREATE TABLE
+COPY 100000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+You are now connected to database "hashing_db" as user "postgres".
+>>> D1_secuencial_500000
+DROP TABLE
+CREATE TABLE
+COPY 500000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+You are now connected to database "hashing_db" as user "postgres".
+>>> D2_aleatorio_500000
+DROP TABLE
+CREATE TABLE
+COPY 500000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+You are now connected to database "hashing_db" as user "postgres".
+>>> D1_secuencial_1000000
+DROP TABLE
+CREATE TABLE
+COPY 1000000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+You are now connected to database "hashing_db" as user "postgres".
+>>> D2_aleatorio_1000000
+DROP TABLE
+CREATE TABLE
+COPY 1000000
+INSERT 0 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+UPDATE 1
+>>> RESUMEN
+        dataset        |  filas  | insertadas | perdidas | reinsertadas | falsos_positivos 
+-----------------------+---------+------------+----------+--------------+------------------
+ D1_secuencial_100000  |  100000 |     100000 |        0 |            0 |                0
+ D2_aleatorio_100000   |  100000 |     100000 |        0 |            0 |                0
+ D1_secuencial_500000  |  500000 |     500000 |        0 |            0 |                0
+ D2_aleatorio_500000   |  500000 |     500000 |        0 |            0 |                0
+ D1_secuencial_1000000 | 1000000 |    1000000 |        0 |            0 |                0
+ D2_aleatorio_1000000  | 1000000 |    1000000 |        0 |            0 |                0
+(6 rows)
+
+DROP TABLE
