@@ -24,8 +24,10 @@ bool insertar_llave(struct Directorio* dir, int llave) {
         return true;
     }
 
-    // bucket lleno: split y reintento
-    if (dir->PROF_GLOBAL >= PROF_MAXIMA) return false;
+    // bucket lleno: split y reintento.
+    // El limite solo importa si el split tendria que DUPLICAR el directorio
+    // (PROF_LOCAL == PROF_GLOBAL). Si PROF_LOCAL < PROF_GLOBAL se puede partir igual.
+    if (bucket_actual->PROF_LOCAL >= dir->PROF_GLOBAL && dir->PROF_GLOBAL >= PROF_MAXIMA) return false;
 
     int indice = llave & ((1 << dir->PROF_GLOBAL) - 1);
     dividir_bucket(dir, indice);
