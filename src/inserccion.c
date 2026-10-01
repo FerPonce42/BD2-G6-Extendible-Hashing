@@ -30,7 +30,7 @@ bool insertar_llave(struct Directorio* dir, int llave) {
     if (bucket_actual->PROF_LOCAL >= dir->PROF_GLOBAL && dir->PROF_GLOBAL >= PROF_MAXIMA) return false;
 
     int indice = llave & ((1 << dir->PROF_GLOBAL) - 1);
-    dividir_bucket(dir, indice);
+    if (!dividir_bucket(dir, indice)) return false; // sin memoria: no reintentar para siempre
 
     return insertar_llave(dir, llave);
 }

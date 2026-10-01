@@ -22,22 +22,22 @@ static int duplicar_directorio(struct Directorio* dir) {
     return 1;
 }
 
-void dividir_bucket(struct Directorio* dir, int indice_bucket) {
+int dividir_bucket(struct Directorio* dir, int indice_bucket) {
 
-    if (dir == NULL || dir->ARR_BUCKETS == NULL) return;
-    if (indice_bucket < 0 || indice_bucket >= (1 << dir->PROF_GLOBAL)) return;
+    if (dir == NULL || dir->ARR_BUCKETS == NULL) return 0;
+    if (indice_bucket < 0 || indice_bucket >= (1 << dir->PROF_GLOBAL)) return 0;
 
     struct Bucket* viejo = dir->ARR_BUCKETS[indice_bucket];
-    if (viejo == NULL) return;
+    if (viejo == NULL) return 0;
 
     if (viejo->PROF_LOCAL == dir->PROF_GLOBAL) {
-        if (!duplicar_directorio(dir)) return;
+        if (!duplicar_directorio(dir)) return 0;
     }
 
     int p = viejo->PROF_LOCAL;
 
     struct Bucket* nuevo = CrearBucket(viejo->TAM, p + 1);
-    if (nuevo == NULL) return;
+    if (nuevo == NULL) return 0;
 
     viejo->PROF_LOCAL = p + 1;
 
@@ -65,4 +65,6 @@ void dividir_bucket(struct Directorio* dir, int indice_bucket) {
     }
 
     viejo->ELEM = j;
+
+    return 1;
 }
