@@ -1,0 +1,61 @@
+=== 5.2: CONSTRUCCION Y TAMANO ===
+                                                      version                                                       
+--------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+ filas_buses 
+-------------
+      100000
+(1 row)
+
+psql:bench_5.2/construccion_tamano.sql:31: NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+psql:bench_5.2/construccion_tamano.sql:32: NOTICE:  table "medidas_construccion" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+SET
+DO
+
+--- Tamano ---
+ indice_btree | indice_btree_bytes | tabla_buses | bytes_por_clave_btree 
+--------------+--------------------+-------------+-----------------------
+ 2208 kB      |            2260992 | 5504 kB     |                 22.61
+(1 row)
+
+You are now connected to database "hashing_db" as user "postgres".
+DO
+You are now connected to database "hashing_db" as user "postgres".
+DO
+You are now connected to database "hashing_db" as user "postgres".
+DO
+You are now connected to database "hashing_db" as user "postgres".
+DO
+You are now connected to database "hashing_db" as user "postgres".
+DO
+You are now connected to database "hashing_db" as user "postgres".
+DO
+
+--- Construccion por repeticion ---
+ metodo  | repeticion | filas  |   ms   
+---------+------------+--------+--------
+ btree   |          1 | 100000 | 27.645
+ btree   |          2 | 100000 | 29.952
+ btree   |          3 | 100000 | 28.340
+ btree   |          4 | 100000 | 24.598
+ btree   |          5 | 100000 | 25.180
+ hashing |          1 | 100000 |  9.346
+ hashing |          2 | 100000 |  8.993
+ hashing |          3 | 100000 |  9.434
+ hashing |          4 | 100000 |  9.970
+ hashing |          5 | 100000 |  9.456
+(10 rows)
+
+
+--- Resumen construccion ---
+ metodo  | repeticiones | filas  | min_ms | mediana_ms | max_ms | mediana_us_por_fila 
+---------+--------------+--------+--------+------------+--------+---------------------
+ btree   |            5 | 100000 | 24.598 |     27.645 | 29.952 |               0.276
+ hashing |            5 | 100000 |  8.993 |      9.434 |  9.970 |               0.094
+(2 rows)
+
