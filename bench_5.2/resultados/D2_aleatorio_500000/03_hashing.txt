@@ -23,7 +23,7 @@ CREATE TABLE
 DO
  insertadas | total  | construccion_ms | todas_insertadas 
 ------------+--------+-----------------+------------------
-     500000 | 500000 |          90.767 | t
+     500000 | 500000 |         107.199 | t
 (1 row)
 
 CREATE TABLE
@@ -34,29 +34,29 @@ CREATE FUNCTION
 --- Resultado por repeticion ---
      metodo      | repeticion | n_consultas | total_ms | aciertos | esperados 
 -----------------+------------+-------------+----------+----------+-----------
- baseline_sql    |          1 |       20000 |   16.698 |    20000 |     10000
- baseline_sql    |          2 |       20000 |   17.386 |    20000 |     10000
- baseline_sql    |          3 |       20000 |   23.215 |    20000 |     10000
- baseline_sql    |          4 |       20000 |   19.330 |    20000 |     10000
- baseline_sql    |          5 |       20000 |   16.577 |    20000 |     10000
- hashing_directo |          1 |       20000 |    4.241 |    10000 |     10000
- hashing_directo |          2 |       20000 |    3.349 |    10000 |     10000
- hashing_directo |          3 |       20000 |    3.748 |    10000 |     10000
- hashing_directo |          4 |       20000 |    3.385 |    10000 |     10000
- hashing_directo |          5 |       20000 |    3.799 |    10000 |     10000
- hashing_via_sql |          1 |       20000 |   22.218 |    10000 |     10000
- hashing_via_sql |          2 |       20000 |   20.961 |    10000 |     10000
- hashing_via_sql |          3 |       20000 |   21.781 |    10000 |     10000
- hashing_via_sql |          4 |       20000 |   25.524 |    10000 |     10000
- hashing_via_sql |          5 |       20000 |   20.934 |    10000 |     10000
+ baseline_sql    |          1 |       20000 |   18.527 |    20000 |     10000
+ baseline_sql    |          2 |       20000 |   18.674 |    20000 |     10000
+ baseline_sql    |          3 |       20000 |   35.561 |    20000 |     10000
+ baseline_sql    |          4 |       20000 |   18.735 |    20000 |     10000
+ baseline_sql    |          5 |       20000 |   18.366 |    20000 |     10000
+ hashing_directo |          1 |       20000 |    3.894 |    10000 |     10000
+ hashing_directo |          2 |       20000 |    3.091 |    10000 |     10000
+ hashing_directo |          3 |       20000 |    3.992 |    10000 |     10000
+ hashing_directo |          4 |       20000 |    3.044 |    10000 |     10000
+ hashing_directo |          5 |       20000 |    3.811 |    10000 |     10000
+ hashing_via_sql |          1 |       20000 |   25.127 |    10000 |     10000
+ hashing_via_sql |          2 |       20000 |   25.442 |    10000 |     10000
+ hashing_via_sql |          3 |       20000 |   22.148 |    10000 |     10000
+ hashing_via_sql |          4 |       20000 |   30.158 |    10000 |     10000
+ hashing_via_sql |          5 |       20000 |   22.553 |    10000 |     10000
 (15 rows)
 
 
 --- Resumen ---
      metodo      | n_consultas | repeticiones | min_ms | mediana_ms | max_ms | mediana_ms_por_consulta | resultados_correctos 
 -----------------+-------------+--------------+--------+------------+--------+-------------------------+----------------------
- hashing_via_sql |       20000 |            5 | 20.934 |     21.781 | 25.524 |                 0.00109 | t
- baseline_sql    |       20000 |            5 | 16.577 |     17.386 | 23.215 |                 0.00087 | 
- hashing_directo |       20000 |            5 |  3.349 |      3.748 |  4.241 |                 0.00019 | t
+ hashing_via_sql |       20000 |            5 | 22.148 |     25.127 | 30.158 |                 0.00126 | t
+ baseline_sql    |       20000 |            5 | 18.366 |     18.674 | 35.561 |                 0.00093 | 
+ hashing_directo |       20000 |            5 |  3.044 |      3.811 |  3.992 |                 0.00019 | t
 (3 rows)
 

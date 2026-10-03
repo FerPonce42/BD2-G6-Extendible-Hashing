@@ -22,7 +22,7 @@ DROP INDEX
 --- Construccion del indice ---
 Timing is on.
 CREATE INDEX
-Time: 31.384 ms
+Time: 30.784 ms
 Timing is off.
 ANALYZE
 
@@ -41,17 +41,17 @@ CREATE FUNCTION
 --- Resultado por repeticion ---
  metodo | repeticion | n_consultas | total_ms | aciertos | esperados 
 --------+------------+-------------+----------+----------+-----------
- btree  |          1 |       20000 |   61.418 |    10000 |     10000
- btree  |          2 |       20000 |   59.345 |    10000 |     10000
- btree  |          3 |       20000 |   60.610 |    10000 |     10000
- btree  |          4 |       20000 |   61.260 |    10000 |     10000
- btree  |          5 |       20000 |   58.766 |    10000 |     10000
+ btree  |          1 |       20000 |   86.873 |    10000 |     10000
+ btree  |          2 |       20000 |   66.696 |    10000 |     10000
+ btree  |          3 |       20000 |   58.284 |    10000 |     10000
+ btree  |          4 |       20000 |   65.304 |    10000 |     10000
+ btree  |          5 |       20000 |   55.117 |    10000 |     10000
 (5 rows)
 
 
 --- Resumen ---
  metodo | n_consultas | repeticiones | min_ms | mediana_ms | max_ms | mediana_ms_por_consulta | resultados_correctos 
 --------+-------------+--------------+--------+------------+--------+-------------------------+----------------------
- btree  |       20000 |            5 | 58.766 |     60.610 | 61.418 |                 0.00303 | t
+ btree  |       20000 |            5 | 55.117 |     65.304 | 86.873 |                 0.00327 | t
 (1 row)
 
