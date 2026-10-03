@@ -1,7 +1,7 @@
 # 5.2 Comparación preliminar con B-tree
 
 **Responsable:** Iair Suico
-**Rama:** `iair-5.2` (commit `6a02de8`, sobre `main` en `1994cd7`)
+**Rama:** `iair-5.2-v2` (sobre `main` en `1994cd7`; incluye la rama `benchmark` de Fabricio, commit `716f5c9`, y la 5.2, commit `6a02de8`)
 **Fecha de ejecución:** 02/10/2026, 20:20 (hora de Lima)
 
 ## 1. Objetivo
@@ -152,7 +152,7 @@ D2_aleatorio_500000/   (igual)
 D2_aleatorio_1000000/  (igual)
 ```
 
-**Dependencia:** los scripts de `benchmark/` (Fabricio) todavía no están en el repositorio. Para que la 5.2 se pueda reproducir desde el repo, esa carpeta tiene que subirse a `main`.
+La rama `iair-5.2-v2` ya incluye la carpeta `benchmark/` de Fabricio (rama `benchmark`, commit `716f5c9`). Se comprobó con `fc` que sus scripts `00`, `02` y `03` son idénticos a los usados en las mediciones.
 
 ## 8. Uso de IA
 
