@@ -1,0 +1,50 @@
+﻿=== BENCHMARK 1: SIN INDICE ===
+                                                      version                                                       
+--------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+ filas_buses 
+-------------
+      100000
+(1 row)
+
+ claves_a_buscar | existen | ausentes 
+-----------------+---------+----------
+           20000 |   10000 |    10000
+(1 row)
+
+repeticiones: 5
+SET
+DROP INDEX
+ANALYZE
+
+--- Plan de ejecucion (debe decir Seq Scan) ---
+           QUERY PLAN           
+--------------------------------
+ Result
+   InitPlan 1
+     ->  Seq Scan on buses
+           Filter: (id_bus = 1)
+(4 rows)
+
+CREATE TABLE
+CREATE FUNCTION
+
+--- Resultado por repeticion ---
+   metodo   | repeticion | n_consultas | total_ms  | aciertos | esperados 
+------------+------------+-------------+-----------+----------+-----------
+ sin_indice |          1 |       20000 | 50869.725 |    10000 |     10000
+ sin_indice |          2 |       20000 | 50063.369 |    10000 |     10000
+ sin_indice |          3 |       20000 | 50082.437 |    10000 |     10000
+ sin_indice |          4 |       20000 | 50114.022 |    10000 |     10000
+ sin_indice |          5 |       20000 | 50424.055 |    10000 |     10000
+(5 rows)
+
+
+--- Resumen ---
+   metodo   | n_consultas | repeticiones |  min_ms   | mediana_ms |  max_ms   | mediana_ms_por_consulta | resultados_correctos 
+------------+-------------+--------------+-----------+------------+-----------+-------------------------+----------------------
+ sin_indice |       20000 |            5 | 50063.369 |  50114.022 | 50869.725 |                 2.50570 | t
+(1 row)
+

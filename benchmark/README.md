@@ -54,6 +54,6 @@ Otras limitaciones que conviene decir en la defensa:
 ## Declaración de uso de IA
 
 Los scripts de esta carpeta (`00` al `03`) y este README fueron diseñados y redactados con
-ayuda de **Claude (Anthropic)**. [TU NOMBRE] los revisó, los ejecutó en el entorno Docker del
+ayuda de **Claude (Anthropic)**. fabricio los revisó, los ejecutó en el entorno Docker del
 grupo (PostgreSQL 18.6) y generó los archivos de `resultados/`. Las decisiones de qué comparar
 y cómo medirlo se discutieron con el grupo.
