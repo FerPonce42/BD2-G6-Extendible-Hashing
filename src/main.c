@@ -40,8 +40,12 @@ int main() {
 
     // ---- Prueba 2: insertar una clave repetida ----
     printf("\n--- Insertando clave repetida (%d otra vez) ---\n", claves[0]);
-    insertar_llave(d, claves[0]); // deberia avisar que ya existe, no duplicarla
-
+    // insertar_llave devuelve false si la clave ya existia
+    if (!insertar_llave(d, claves[0]))
+        printf("[OK] La clave %d ya existia, no se duplico\n", claves[0]);
+    else
+        printf("[ERROR] Se inserto una clave repetida\n");
+    
     // ---- Prueba 3: verificar que NINGUNA clave se perdio despues de los splits ----
     printf("\n--- Verificando que las 20 claves sigan encontrandose ---\n");
 
