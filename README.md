@@ -126,7 +126,7 @@ Se ejecutan dentro del contenedor, con el proyecto y los CSV ya copiados (pasos 
 ```
 docker exec -it -w /app bd2_g6_hashing sh tests/correr_tests.sh
 ```
-Cada salida se guarda en un `.txt` dentro de `tests/`. Prueban D1 y D2 con 100 000, 500 000 y 1 000 000 claves (claves perdidas, reinsertadas y falsos positivos), 18 casos límite y el tope de profundidad. `tests/revision_interna.c` inserta 1 000 000 de claves directamente en C y revisa el directorio. Los resultados guardados están en `tests/resultados/antes/` (código original) y `tests/resultados/despues/` (con las correcciones).
+Cada salida se guarda en un `.txt` en `tests/resultados/resultado/` (dentro del contenedor). Prueban D1 y D2 con 100 000, 500 000 y 1 000 000 claves (claves perdidas, reinsertadas y falsos positivos), 18 casos límite y el tope de profundidad. `tests/revision_interna.c` inserta 1 000 000 de claves directamente en C y revisa el directorio. Los resultados guardados están en `tests/resultados/antes/` (código original) y `tests/resultados/despues/` (con las correcciones).
 
 ---
 
@@ -138,7 +138,7 @@ Cada salida se guarda en un `.txt` dentro de `tests/`. Prueban D1 y D2 con 100 0
 ```
 docker exec -it -w /app bd2_g6_hashing sh bench_5.2/correr_5.2.sh
 ```
-Los detalles y resultados están en `bench_5.2/README.md` y `bench_5.2/INFORME_5.2.md`.
+Las salidas se guardan en `bench_5.2/resultados/` (dentro del contenedor). Los detalles están en `bench_5.2/README.md` y `bench_5.2/INFORME_5.2.md`.
 
 Los tiempos dependen de la máquina, así que al repetirlos los números pueden variar un poco; lo que debe mantenerse es el orden de magnitud entre métodos.
 
