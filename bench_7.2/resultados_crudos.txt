@@ -1,0 +1,442 @@
+==========================================
+Iniciando Benchmark 7.2
+                                                      version                                                       
+--------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+==========================================
+==========================================
+Preparando Dataset D2 - Tamaño: 100000 filas | Inserciones W3: 10000
+------------------------------------------
+Midiendo tiempos...
+--> Repetición 1
+Prueba B-Tree:
+NOTICE:  index "idx_btree_test" does not exist, skipping
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.153 ms
+INSERT 0 10000
+Time: 21.731 ms
+ROLLBACK
+Time: 0.250 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+ count  
+--------
+ 100000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 10000
+(1 row)
+
+Time: 6.173 ms
+Timing is off.
+--> Repetición 2
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.221 ms
+INSERT 0 10000
+Time: 22.664 ms
+ROLLBACK
+Time: 0.248 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+ count  
+--------
+ 100000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 10000
+(1 row)
+
+Time: 7.262 ms
+Timing is off.
+--> Repetición 3
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.160 ms
+INSERT 0 10000
+Time: 23.248 ms
+ROLLBACK
+Time: 0.335 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+ count  
+--------
+ 100000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 10000
+(1 row)
+
+Time: 5.121 ms
+Timing is off.
+--> Repetición 4
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.109 ms
+INSERT 0 10000
+Time: 17.112 ms
+ROLLBACK
+Time: 0.210 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+ count  
+--------
+ 100000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 10000
+(1 row)
+
+Time: 4.694 ms
+Timing is off.
+--> Repetición 5
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.348 ms
+INSERT 0 10000
+Time: 20.654 ms
+ROLLBACK
+Time: 0.370 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+ count  
+--------
+ 100000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 10000
+(1 row)
+
+Time: 4.912 ms
+Timing is off.
+==========================================
+Preparando Dataset D2 - Tamaño: 500000 filas | Inserciones W3: 50000
+------------------------------------------
+Midiendo tiempos...
+--> Repetición 1
+Prueba B-Tree:
+DROP INDEX
+NOTICE:  index "idx_btree_test" does not exist, skipping
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.202 ms
+INSERT 0 50000
+Time: 131.483 ms
+ROLLBACK
+Time: 0.323 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+ count  
+--------
+ 500000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 50000
+(1 row)
+
+Time: 21.107 ms
+Timing is off.
+--> Repetición 2
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.344 ms
+INSERT 0 50000
+Time: 154.941 ms
+ROLLBACK
+Time: 0.143 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+ count  
+--------
+ 500000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 50000
+(1 row)
+
+Time: 21.875 ms
+Timing is off.
+--> Repetición 3
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.122 ms
+INSERT 0 50000
+Time: 106.778 ms
+ROLLBACK
+Time: 0.231 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+ count  
+--------
+ 500000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 50000
+(1 row)
+
+Time: 18.781 ms
+Timing is off.
+--> Repetición 4
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.103 ms
+INSERT 0 50000
+Time: 107.706 ms
+ROLLBACK
+Time: 0.210 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+ count  
+--------
+ 500000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 50000
+(1 row)
+
+Time: 19.749 ms
+Timing is off.
+--> Repetición 5
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.245 ms
+INSERT 0 50000
+Time: 101.079 ms
+ROLLBACK
+Time: 0.313 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+ count  
+--------
+ 500000
+(1 row)
+
+Timing is on.
+ count 
+-------
+ 50000
+(1 row)
+
+Time: 23.216 ms
+Timing is off.
+==========================================
+Preparando Dataset D2 - Tamaño: 1000000 filas | Inserciones W3: 100000
+------------------------------------------
+Midiendo tiempos...
+--> Repetición 1
+Prueba B-Tree:
+NOTICE:  index "idx_btree_test" does not exist, skipping
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.178 ms
+INSERT 0 100000
+Time: 171.062 ms
+ROLLBACK
+Time: 0.466 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+  count  
+---------
+ 1000000
+(1 row)
+
+Timing is on.
+ count  
+--------
+ 100000
+(1 row)
+
+Time: 50.377 ms
+Timing is off.
+--> Repetición 2
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.153 ms
+INSERT 0 100000
+Time: 184.670 ms
+ROLLBACK
+Time: 0.553 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+  count  
+---------
+ 1000000
+(1 row)
+
+Timing is on.
+ count  
+--------
+ 100000
+(1 row)
+
+Time: 50.202 ms
+Timing is off.
+--> Repetición 3
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.152 ms
+INSERT 0 100000
+Time: 188.767 ms
+ROLLBACK
+Time: 0.277 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+  count  
+---------
+ 1000000
+(1 row)
+
+Timing is on.
+ count  
+--------
+ 100000
+(1 row)
+
+Time: 53.032 ms
+Timing is off.
+--> Repetición 4
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.134 ms
+INSERT 0 100000
+Time: 182.767 ms
+ROLLBACK
+Time: 0.357 ms
+Timing is off.
+Prueba Hash:
+NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+  count  
+---------
+ 1000000
+(1 row)
+
+Timing is on.
+ count  
+--------
+ 100000
+(1 row)
+
+Time: 49.008 ms
+Timing is off.
+--> Repetición 5
+Prueba B-Tree:
+DROP INDEX
+CREATE INDEX
+Timing is on.
+BEGIN
+Time: 0.196 ms
+INSERT 0 100000
+Time: 184.346 ms
+ROLLBACK
+Time: 0.248 ms
+Timing is off.
+Prueba Hash:
+CREATE EXTENSION
+NOTICE:  extension "pg_hashing" already exists, skipping
+  count  
+---------
+ 1000000
+(1 row)
+
+Timing is on.
+ count  
+--------
+ 100000
+(1 row)
+
+Time: 51.859 ms
+Timing is off.
