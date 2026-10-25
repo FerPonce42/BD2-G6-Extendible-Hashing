@@ -1,0 +1,51 @@
+Dataset: D2_aleatorio_100000
+Filas en buses: 100000
+Indices en buses: 0
+Inserciones por repeticion: 10000
+Fecha: Sun Oct 25 12:31:28 AM UTC 2026
+PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+--> Repeticion 1
+Timing is on.
+BEGIN
+Time: 0.053 ms
+INSERT 0 10000
+Time: 4.509 ms
+ROLLBACK
+Time: 0.201 ms
+Timing is off.
+--> Repeticion 2
+Timing is on.
+BEGIN
+Time: 0.049 ms
+INSERT 0 10000
+Time: 4.632 ms
+ROLLBACK
+Time: 0.082 ms
+Timing is off.
+--> Repeticion 3
+Timing is on.
+BEGIN
+Time: 0.062 ms
+INSERT 0 10000
+Time: 4.485 ms
+ROLLBACK
+Time: 0.058 ms
+Timing is off.
+--> Repeticion 4
+Timing is on.
+BEGIN
+Time: 0.065 ms
+INSERT 0 10000
+Time: 4.669 ms
+ROLLBACK
+Time: 0.173 ms
+Timing is off.
+--> Repeticion 5
+Timing is on.
+BEGIN
+Time: 0.066 ms
+INSERT 0 10000
+Time: 8.245 ms
+ROLLBACK
+Time: 0.075 ms
+Timing is off.

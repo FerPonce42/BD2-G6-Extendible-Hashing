@@ -1,0 +1,5 @@
+Inserciones (W3) sin indice: mediana de 5 repeticiones
+filas      inserciones  mediana_ms   tiempos_ms
+100000     10000        4.632        4.509 4.632 4.485 4.669 8.245 
+500000     50000        21.923       20.340 21.250 21.923 22.436 22.219 
+1000000    100000       48.140       46.604 48.140 50.269 57.423 45.436 
