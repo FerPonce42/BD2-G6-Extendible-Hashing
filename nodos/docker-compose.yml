@@ -1,0 +1,95 @@
+# docker-compose.yml de los 3 nodos
+# Grupo 6 - BD2 - Actividad 9.1 (Maricielo Luna)
+#
+# Levanta los nodos A, B y C de la parte distribuida. Es aparte del
+# docker-compose.yml de la raiz (bd2_g6_hashing), que sigue igual.
+#
+# Cada nodo usa la misma imagen del proyecto (PostgreSQL 18.6 + pg_hashing)
+# y la base "distribuido", no hashing_db.
+# wal_level=logical es necesario para la replicacion de Fabricio (8.3).
+#
+#   Nodo    Puerto en tu PC   Principal              Replica de
+#   nodo_a  5433              Norte                  Centro, conductores
+#   nodo_b  5434              Centro, conductores    Norte, Sur
+#   nodo_c  5435              Sur                    conductores
+#
+# Al arrancar por primera vez, cada nodo crea sus tablas y su publicacion
+# (archivos de nodos/sql/ que se montan en docker-entrypoint-initdb.d).
+#
+# Uso (PowerShell, desde la carpeta del proyecto):
+#   1) Levantar:
+#        docker compose -f nodos/docker-compose.yml up -d --build
+#   2) Suscripciones (esperar unos segundos a que arranquen los 3):
+#        docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/suscripciones.sql
+#        docker exec nodo_b psql -U postgres -d distribuido -v nodo=B -f /nodos/suscripciones.sql
+#        docker exec nodo_c psql -U postgres -d distribuido -v nodo=C -f /nodos/suscripciones.sql
+#   3) Datos de prueba (B primero, esperar unos 10 segundos, despues A y C):
+#        docker exec nodo_b psql -U postgres -d distribuido -v nodo=B -f /nodos/datos_prueba.sql
+#        docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/datos_prueba.sql
+#        docker exec nodo_c psql -U postgres -d distribuido -v nodo=C -f /nodos/datos_prueba.sql
+#   4) Verificar (cambiar nodo_a/A por nodo_b/B y nodo_c/C):
+#        docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/verificar.sql
+#   Para borrar todo y empezar de cero:
+#        docker compose -f nodos/docker-compose.yml down -v
+
+services:
+  nodo_a:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_a
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5433:5432"
+    volumes:
+      # se ejecutan en orden alfabetico, solo la primera vez que arranca el nodo
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/02_norte.sql:/docker-entrypoint-initdb.d/02_norte.sql:ro
+      - ./sql/03_centro.sql:/docker-entrypoint-initdb.d/03_centro.sql:ro
+      - ./sql/05_publicacion_a.sql:/docker-entrypoint-initdb.d/05_publicacion_a.sql:ro
+      - ./sql:/nodos:ro
+
+  nodo_b:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_b
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/02_norte.sql:/docker-entrypoint-initdb.d/02_norte.sql:ro
+      - ./sql/03_centro.sql:/docker-entrypoint-initdb.d/03_centro.sql:ro
+      - ./sql/04_sur.sql:/docker-entrypoint-initdb.d/04_sur.sql:ro
+      - ./sql/05_publicacion_b.sql:/docker-entrypoint-initdb.d/05_publicacion_b.sql:ro
+      - ./sql:/nodos:ro
+
+  nodo_c:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_c
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/04_sur.sql:/docker-entrypoint-initdb.d/04_sur.sql:ro
+      - ./sql/05_publicacion_c.sql:/docker-entrypoint-initdb.d/05_publicacion_c.sql:ro
+      - ./sql:/nodos:ro
