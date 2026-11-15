@@ -29,11 +29,19 @@
 #   - id_bus e id_viaje se reparten al azar entre las zonas (no por bloques),
 #     como pasaria en un sistema real.
 #
-# Uso (desde la raiz del repositorio):
-#   python generador/generar_distribuido.py          -> tamano de diseno (1 200 000 viajes)
-#   python generador/generar_distribuido.py 0.01     -> 1 % (50 conductores, 1 000 buses, 12 000 viajes)
+# Dos estrategias de fragmentacion (actividad 10.1). Las FILAS son exactamente las
+# mismas en las dos (misma semilla); solo cambia en que archivo cae cada una:
+#   zona (Alt. 1 de 8.1, la elegida): buses/viajes_norte, _centro, _sur -> A, B, C
+#   hash (Alt. 2 de 8.1): buses_hK con K = id_bus mod 3 y viajes_hK con K = id_viaje mod 3
+#                         h0 -> A, h1 -> B, h2 -> C
 #
-# Los archivos quedan en data/distribuido/ (data/ esta en el .gitignore).
+# Uso (desde la raiz del repositorio):
+#   python generador/generar_distribuido.py              -> zona, tamano de diseno (1 200 000 viajes)
+#   python generador/generar_distribuido.py 1 hash       -> hash, tamano de diseno
+#   python generador/generar_distribuido.py 0.01         -> zona al 1 % (50 conductores, 1 000 buses, 12 000 viajes)
+#
+# Los archivos quedan en data/distribuido/ (zona) o data/distribuido_hash/ (hash).
+# data/ esta en el .gitignore.
 
 import csv
 import os
@@ -42,7 +50,7 @@ import sys
 from datetime import date, datetime, timedelta
 
 SEMILLA = 42
-CARPETA = os.path.join("data", "distribuido")
+CARPETA = os.path.join("data", "distribuido")   # se cambia en main() segun la estrategia
 
 # Las mismas 10 rutas y zonas de esquema_global.sql (actividad 8.1)
 RUTAS = [
@@ -59,6 +67,8 @@ RUTAS = [
     (10, "C1", "sur"),
 ]
 ZONAS = ["norte", "centro", "sur"]
+HASH = ["h0", "h1", "h2"]
+NODO = {"norte": "A", "centro": "B", "sur": "C", "h0": "A", "h1": "B", "h2": "C"}
 
 # Tamanos de diseno (escala 1)
 CONDUCTORES = 5000
@@ -100,7 +110,17 @@ def generar_conductores(n):
     return n
 
 
-def generar_buses(buses_por_ruta):
+def fragmento(estrategia, id_fila, id_ruta):
+    # En que fragmento cae una fila de buses (id_bus) o de viajes (id_viaje)
+    if estrategia == "hash":
+        return "h" + str(id_fila % 3)
+    return ZONA_DE_RUTA[id_ruta]
+
+
+ZONA_DE_RUTA = {id_ruta: zona for id_ruta, _, zona in RUTAS}
+
+
+def generar_buses(buses_por_ruta, estrategia, fragmentos):
     # Una lista de rutas con BUSES_POR_RUTA copias de cada una, mezclada:
     # el bus i trabaja en la ruta rutas_de_bus[i-1] (regla 1).
     rutas_de_bus = []
@@ -108,16 +128,15 @@ def generar_buses(buses_por_ruta):
         rutas_de_bus += [id_ruta] * buses_por_ruta
     random.shuffle(rutas_de_bus)
 
-    zona_de_ruta = {id_ruta: zona for id_ruta, _, zona in RUTAS}
     archivos = {}
-    for z in ZONAS:
+    for z in fragmentos:
         archivos[z] = abrir_csv("buses_" + z, ["id_bus", "placa", "id_ruta", "capacidad"])
 
     buses = []   # (id_bus, id_ruta, capacidad), para armar los viajes
     for i, id_ruta in enumerate(rutas_de_bus, start=1):
         placa = "".join(random.choice(LETRAS) for _ in range(3)) + "-" + str(random.randint(100, 999))
         capacidad = random.choice(CAPACIDADES)
-        archivos[zona_de_ruta[id_ruta]][1].writerow([i, placa, id_ruta, capacidad])
+        archivos[fragmento(estrategia, i, id_ruta)][1].writerow([i, placa, id_ruta, capacidad])
         buses.append((i, id_ruta, capacidad))
 
     for f, _ in archivos.values():
@@ -125,7 +144,7 @@ def generar_buses(buses_por_ruta):
     return buses
 
 
-def generar_viajes(buses, n_conductores):
+def generar_viajes(buses, n_conductores, estrategia, fragmentos):
     # Cada bus hace VIAJES_POR_BUS viajes; el orden se mezcla para que
     # id_viaje no quede agrupado por bus ni por zona.
     viajes_de = []
@@ -133,9 +152,8 @@ def generar_viajes(buses, n_conductores):
         viajes_de += [b] * VIAJES_POR_BUS
     random.shuffle(viajes_de)
 
-    zona_de_ruta = {id_ruta: zona for id_ruta, _, zona in RUTAS}
     archivos = {}
-    for z in ZONAS:
+    for z in fragmentos:
         archivos[z] = abrir_csv("viajes_" + z, ["id_viaje", "id_bus", "id_conductor", "id_ruta",
                                                 "salida", "pasajeros", "tarifa"])
 
@@ -144,7 +162,7 @@ def generar_viajes(buses, n_conductores):
         salida = datetime(INICIO_SALIDAS.year, INICIO_SALIDAS.month, INICIO_SALIDAS.day) + timedelta(
             days=random.randrange(DIAS_SALIDAS),
             minutes=5 * 60 + random.randrange(18 * 60))   # entre 05:00 y 22:59
-        archivos[zona_de_ruta[id_ruta]][1].writerow([
+        archivos[fragmento(estrategia, id_viaje, id_ruta)][1].writerow([
             id_viaje, id_bus, random.randint(1, n_conductores), id_ruta,
             salida.strftime("%Y-%m-%d %H:%M:00"),
             random.randint(0, capacidad), TARIFA_RUTA[id_ruta]])
@@ -160,25 +178,32 @@ def contar_filas(nombre):
 
 
 def main():
+    global CARPETA
     escala = float(sys.argv[1]) if len(sys.argv) > 1 else 1.0
+    estrategia = sys.argv[2] if len(sys.argv) > 2 else "zona"
+    if estrategia not in ("zona", "hash"):
+        print("La estrategia tiene que ser zona o hash")
+        sys.exit(1)
+    fragmentos = HASH if estrategia == "hash" else ZONAS
+    if estrategia == "hash":
+        CARPETA = os.path.join("data", "distribuido_hash")
     n_conductores = max(1, round(CONDUCTORES * escala))
     buses_por_ruta = max(1, round(BUSES_POR_RUTA * escala))
 
     os.makedirs(CARPETA, exist_ok=True)
     random.seed(SEMILLA)
-    print("Semilla: " + str(SEMILLA) + "   escala: " + str(escala))
+    print("Semilla: " + str(SEMILLA) + "   escala: " + str(escala) + "   estrategia: " + estrategia)
 
     generar_conductores(n_conductores)
-    buses = generar_buses(buses_por_ruta)
-    total_viajes = generar_viajes(buses, n_conductores)
+    buses = generar_buses(buses_por_ruta, estrategia, fragmentos)
+    total_viajes = generar_viajes(buses, n_conductores, estrategia, fragmentos)
 
     print("\nArchivo              filas   nodo principal")
     print("conductores.csv  %9d   B" % contar_filas("conductores"))
-    nodo = {"norte": "A", "centro": "B", "sur": "C"}
     for tabla in ["buses", "viajes"]:
-        for z in ZONAS:
+        for z in fragmentos:
             nombre = tabla + "_" + z
-            print("%-16s %9d   %s" % (nombre + ".csv", contar_filas(nombre), nodo[z]))
+            print("%-16s %9d   %s" % (nombre + ".csv", contar_filas(nombre), NODO[z]))
     print("\nTotal: %d buses y %d viajes en %s" % (len(buses), total_viajes, CARPETA))
 
 
