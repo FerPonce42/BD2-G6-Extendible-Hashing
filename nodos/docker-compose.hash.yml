@@ -1,0 +1,93 @@
+# docker-compose.hash.yml - nodos de la estrategia hash
+# Grupo 6 - BD2 - Actividad 10.1 (Maricielo Luna)
+#
+# Segunda estrategia de 8.1/8.2 (alternativa 2): viajes y buses repartidos por
+# id mod 3. Es para la comparacion de la 10.1 con la estrategia por zona
+# (docker-compose.yml de esta misma carpeta).
+#
+#   Nodo    Puerto en tu PC   Fragmentos             conductores
+#   nodo_a  5433              buses_h0, viajes_h0    replica (de B)
+#   nodo_b  5434              buses_h1, viajes_h1    principal
+#   nodo_c  5435              buses_h2, viajes_h2    replica (de B)
+#
+# Usa los MISMOS nombres de contenedor, base y puertos que la estrategia por zona,
+# para que la carga de Iair (generador/cargar_distribuido.sh) y las consultas de
+# Nicol funcionen sin cambios. Por eso se levanta UNA estrategia a la vez.
+# Los fragmentos h0/h1/h2 no tienen replica (como en el analisis de 8.1/8.2);
+# solo se replica conductores, igual que en la estrategia por zona.
+#
+# Uso (PowerShell, desde la carpeta del proyecto):
+#   1) Bajar la estrategia por zona si esta levantada (borra sus datos):
+#        docker compose -f nodos/docker-compose.yml down -v
+#   2) Levantar los nodos hash:
+#        docker compose -f nodos/docker-compose.hash.yml up -d --build
+#   3) Suscripciones de conductores (esperar unos segundos a que arranquen):
+#        docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/hash_suscripciones.sql
+#        docker exec nodo_c psql -U postgres -d distribuido -v nodo=C -f /nodos/hash_suscripciones.sql
+#   4) Cargar los datos (Git Bash, ver generador/INFORME_10.1_hash.md):
+#        python generador/generar_distribuido.py 1 hash
+#        export MSYS_NO_PATHCONV=1
+#        bash generador/cargar_distribuido.sh hash
+#   5) Verificar (cambiar nodo_a/A por nodo_b/B y nodo_c/C):
+#        docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/hash_verificar.sql
+#   Para volver a la estrategia por zona:
+#        docker compose -f nodos/docker-compose.hash.yml down -v
+#        docker compose -f nodos/docker-compose.yml up -d
+
+name: nodos_hash
+
+services:
+  nodo_a:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_a
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/hash_h0.sql:/docker-entrypoint-initdb.d/02_hash_h0.sql:ro
+      - ./sql:/nodos:ro
+
+  nodo_b:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_b
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/hash_h1.sql:/docker-entrypoint-initdb.d/02_hash_h1.sql:ro
+      - ./sql/hash_publicacion_b.sql:/docker-entrypoint-initdb.d/05_hash_publicacion_b.sql:ro
+      - ./sql:/nodos:ro
+
+  nodo_c:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: bd2_g6_nodo
+    container_name: nodo_c
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: distribuido
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./sql/01_comun.sql:/docker-entrypoint-initdb.d/01_comun.sql:ro
+      - ./sql/hash_h2.sql:/docker-entrypoint-initdb.d/02_hash_h2.sql:ro
+      - ./sql:/nodos:ro
