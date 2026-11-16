@@ -1,0 +1,31 @@
+=== 10.2 - modo promocion, nodo nodo_b - 2026-11-15 00:57:34 - REP=5
+Antes de la caida:
+    viajes_norte en nodo_a: 360000
+    viajes_norte en nodo_b: 360000
+    viajes_centro en nodo_b: 480000
+    viajes_centro en nodo_a: 480000
+    viajes_sur en nodo_c: 360000
+    viajes_sur en nodo_b: 360000
+>>> Ronda: normal
+    90 operaciones, 0 fallaron
+Escribiendo en viajes_centro (nodo_b) y matando el nodo a los 3 s...
+docker kill nodo_b
+>>> Ronda: caido
+    90 operaciones, 10 fallaron
+Promoviendo la replica de centro en nodo_a...
+Promocion: 5.5 s (desde la caida: 96.8 s)
+Extendible Hashing reconstruido en nodo_a sobre viajes_centro: 484161 claves en 77.645 ms; pg_buscar(existe, no existe) = t|f
+>>> Ronda: promovido
+    90 operaciones, 0 fallaron
+Escrituras confirmadas en nodo_b antes de la caida: 4157
+Llegaron a la replica (nodo_a): 4156
+Perdidas: 1
+Conductor nuevo escrito en nodo_a, visto en nodo_c: 1 (1 = la nueva replica funciona)
+Despues de la promocion (sin las filas de prueba):
+    viajes_norte en nodo_a: 360000
+    viajes_centro en nodo_a: 480000
+    viajes_sur en nodo_c: 360000
+
+nodo_b quedo apagado y la replicacion cambio. Para volver al estado normal, rearmar los nodos:
+  docker compose -f nodos/docker-compose.yml down -v   (y los pasos de nodos/README.md + generador/cargar_distribuido.sh)
+Listo: caida_10.2/resultados/promocion_B.csv

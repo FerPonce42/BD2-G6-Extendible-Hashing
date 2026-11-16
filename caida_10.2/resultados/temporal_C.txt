@@ -1,0 +1,25 @@
+=== 10.2 - modo temporal, nodo nodo_c - 2026-11-15 00:51:44 - REP=5
+Antes de la caida:
+    viajes_norte en nodo_a: 360000
+    viajes_norte en nodo_b: 360000
+    viajes_centro en nodo_b: 480000
+    viajes_centro en nodo_a: 480000
+    viajes_sur en nodo_c: 360000
+    viajes_sur en nodo_b: 360000
+>>> Ronda: normal
+    90 operaciones, 0 fallaron
+docker stop nodo_c: 0.5 s
+>>> Ronda: caido
+    90 operaciones, 10 fallaron
+Escritos 10 conductores en nodo_b mientras su replica en nodo_c estaba caida
+docker start nodo_c: responde a los 0.7 s y las replicas estan al dia a los 5.0 s (10 filas pendientes)
+>>> Ronda: recuperado
+    90 operaciones, 0 fallaron
+Despues de volver (sin contar las filas de prueba, todo tiene que ser igual a antes):
+    viajes_norte en nodo_a: 360000
+    viajes_norte en nodo_b: 360000
+    viajes_centro en nodo_b: 480000
+    viajes_centro en nodo_a: 480000
+    viajes_sur en nodo_c: 360000
+    viajes_sur en nodo_b: 360000
+Listo: caida_10.2/resultados/temporal_C.csv
