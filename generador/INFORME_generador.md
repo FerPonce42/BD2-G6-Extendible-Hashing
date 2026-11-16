@@ -1,6 +1,6 @@
 ## Generador de datos del esquema distribuido
 
-*Responsable: Iair Suico (semana 9, apoyo a 9.1 y 9.2; no estaba en el cronograma)*
+*Responsable: Iair Suico (semana 9)*
 
 La rúbrica pide que los datos de la parte distribuida salgan de un generador del repositorio. En esta parte escribí ese generador para las 4 relaciones de la actividad 8.1, y un script que carga lo generado en los nodos de la actividad 9.1. Todo está en la carpeta `generador/`.
 
