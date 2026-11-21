@@ -1,0 +1,93 @@
+psql:tests/02_casos_limite.sql:6: NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+You are now connected to database "hashing_db" as user "postgres".
+            caso             | obtenido | esperado 
+-----------------------------+----------+----------
+ buscar en sesion vacia (10) | false    | false
+(1 row)
+
+      caso      | obtenido | esperado 
+----------------+----------+----------
+ cero: insertar | true     | true
+(1 row)
+
+     caso     | obtenido | esperado 
+--------------+----------+----------
+ cero: buscar | true     | true
+(1 row)
+
+          caso           | obtenido | esperado 
+-------------------------+----------+----------
+ cero: insertar otra vez | false    | false
+(1 row)
+
+         caso          | obtenido | esperado 
+-----------------------+----------+----------
+ negativo: insertar -1 | true     | true
+(1 row)
+
+         caso          | obtenido | esperado 
+-----------------------+----------+----------
+ negativo: insertar -4 | true     | true
+(1 row)
+
+        caso         | obtenido | esperado 
+---------------------+----------+----------
+ negativo: buscar -1 | true     | true
+(1 row)
+
+        caso         | obtenido | esperado 
+---------------------+----------+----------
+ negativo: buscar -4 | true     | true
+(1 row)
+
+              caso               | obtenido | esperado 
+---------------------------------+----------+----------
+ negativo: buscar -2 (no existe) | false    | false
+(1 row)
+
+              caso              | obtenido | esperado 
+--------------------------------+----------+----------
+ positivo: buscar 4 (no existe) | false    | false
+(1 row)
+
+             caso             | obtenido | esperado 
+------------------------------+----------+----------
+ extremo: insertar 2147483647 | true     | true
+(1 row)
+
+             caso              | obtenido | esperado 
+-------------------------------+----------+----------
+ extremo: insertar -2147483648 | true     | true
+(1 row)
+
+            caso            | obtenido | esperado 
+----------------------------+----------+----------
+ extremo: buscar 2147483647 | true     | true
+(1 row)
+
+            caso             | obtenido | esperado 
+-----------------------------+----------+----------
+ extremo: buscar -2147483648 | true     | true
+(1 row)
+
+              caso               | obtenido | esperado 
+---------------------------------+----------+----------
+ NULL: pg_insertar(NULL) es NULL | true     | true
+(1 row)
+
+                caso                 | obtenido | esperado 
+-------------------------------------+----------+----------
+ repetidas en una consulta (7,7,7,8) | 2        | 2
+(1 row)
+
+               caso                | obtenido | esperado 
+-----------------------------------+----------+----------
+ negativos -1..-100000: insertadas | 99998    | 99998
+(1 row)
+
+              caso               | obtenido | esperado 
+---------------------------------+----------+----------
+ negativos -1..-100000: perdidas | 0        | 0
+(1 row)
+

@@ -1,0 +1,17 @@
+Archivo:              data/D1_secuencial_1000000.csv
+Filas leidas:         1000000
+Insertadas:           1000000
+Claves en buckets:    1000000
+PROF_GLOBAL final:    15 (32768 casillas)
+Buckets distintos:    32768
+Errores de estructura: 0
+[OK] Estructura correcta
+
+Archivo:              data/D2_aleatorio_1000000.csv
+Filas leidas:         1000000
+Insertadas:           1000000
+Claves en buckets:    1000000
+PROF_GLOBAL final:    16 (65536 casillas)
+Buckets distintos:    31547
+Errores de estructura: 0
+[OK] Estructura correcta

@@ -1,0 +1,29 @@
+psql:tests/03_tope_profundidad.sql:12: NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+psql:tests/03_tope_profundidad.sql:13: NOTICE:  table "prueba_tope" does not exist, skipping
+DROP TABLE
+CREATE TABLE
+COPY 100000
+You are now connected to database "hashing_db" as user "postgres".
+>>> Paso 1: insertar 50 multiplos de 2^24 (0..49) -> llenan un bucket. Esperado: 50
+ insertadas 
+------------
+         50
+(1 row)
+
+>>> Paso 2: insertar la clave 51 (50 * 2^24 = 838860800)
+psql:tests/03_tope_profundidad.sql:24: ERROR:  pg_insertar: no se pudo insertar la clave 838860800
+DETAIL:  Sin memoria o demasiadas claves con los mismos bits bajos (limite PROF_MAXIMA).
+>>> Paso 3: cargar D2 100000 con el directorio en el tope
+ insertadas 
+------------
+     100000
+(1 row)
+
+>>> Paso 4: claves de D2 que no se encuentran
+ no_encontradas 
+----------------
+              0
+(1 row)
+
+DROP TABLE

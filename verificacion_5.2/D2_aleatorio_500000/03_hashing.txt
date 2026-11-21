@@ -1,0 +1,62 @@
+=== BENCHMARK 3: EXTENDIBLE HASHING (pg_buscar) ===
+                                                      version                                                       
+--------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.6 (Debian 18.6-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+ filas_buses 
+-------------
+      500000
+(1 row)
+
+ claves_a_buscar | existen | ausentes 
+-----------------+---------+----------
+           20000 |   10000 |    10000
+(1 row)
+
+repeticiones: 5
+psql:benchmark/03_hashing.sql:43: NOTICE:  extension "pg_hashing" already exists, skipping
+CREATE EXTENSION
+
+--- Construccion: pg_insertar de todas las claves de buses ---
+CREATE TABLE
+DO
+ insertadas | total  | construccion_ms | todas_insertadas 
+------------+--------+-----------------+------------------
+     500000 | 500000 |         134.451 | t
+(1 row)
+
+CREATE TABLE
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+
+--- Resultado por repeticion ---
+     metodo      | repeticion | n_consultas | total_ms | aciertos | esperados 
+-----------------+------------+-------------+----------+----------+-----------
+ baseline_sql    |          1 |       20000 |   23.217 |    20000 |     10000
+ baseline_sql    |          2 |       20000 |   23.895 |    20000 |     10000
+ baseline_sql    |          3 |       20000 |   22.674 |    20000 |     10000
+ baseline_sql    |          4 |       20000 |   27.382 |    20000 |     10000
+ baseline_sql    |          5 |       20000 |   24.335 |    20000 |     10000
+ hashing_directo |          1 |       20000 |    5.910 |    10000 |     10000
+ hashing_directo |          2 |       20000 |    5.887 |    10000 |     10000
+ hashing_directo |          3 |       20000 |    5.701 |    10000 |     10000
+ hashing_directo |          4 |       20000 |    5.214 |    10000 |     10000
+ hashing_directo |          5 |       20000 |    5.583 |    10000 |     10000
+ hashing_via_sql |          1 |       20000 |   28.545 |    10000 |     10000
+ hashing_via_sql |          2 |       20000 |   29.836 |    10000 |     10000
+ hashing_via_sql |          3 |       20000 |   28.177 |    10000 |     10000
+ hashing_via_sql |          4 |       20000 |   28.441 |    10000 |     10000
+ hashing_via_sql |          5 |       20000 |   26.927 |    10000 |     10000
+(15 rows)
+
+
+--- Resumen ---
+     metodo      | n_consultas | repeticiones | min_ms | mediana_ms | max_ms | mediana_ms_por_consulta | resultados_correctos 
+-----------------+-------------+--------------+--------+------------+--------+-------------------------+----------------------
+ hashing_via_sql |       20000 |            5 | 26.927 |     28.441 | 29.836 |                 0.00142 | t
+ baseline_sql    |       20000 |            5 | 22.674 |     23.895 | 27.382 |                 0.00119 | 
+ hashing_directo |       20000 |            5 |  5.214 |      5.701 |  5.910 |                 0.00029 | t
+(3 rows)
+
