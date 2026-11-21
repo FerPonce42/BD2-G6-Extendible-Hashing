@@ -3,7 +3,7 @@
 Estructura de Extendible Hashing hecha en C y conectada a PostgreSQL 18.6 como extensión.
 Desde SQL se usa con `pg_insertar(id)` y `pg_buscar(id)`.
 
-Este README explica cómo levantar todo desde cero y cómo reproducir las pruebas y las mediciones del informe de la etapa I.
+Este README explica cómo levantar todo desde cero y cómo reproducir las pruebas y las mediciones del informe final (etapas I y II). Las secciones de la etapa I van primero; la parte de la etapa II (evaluación completa del índice y escenario distribuido de tres nodos) está en la sección "Etapa II", más abajo.
 
 ---
 
@@ -36,6 +36,15 @@ Este README explica cómo levantar todo desde cero y cómo reproducir las prueba
 - `tests/`: pruebas de correctitud y de casos límite. Los resultados de antes y después de las correcciones están en `tests/resultados/`.
 - `benchmark/`: benchmark de búsqueda (sin índice, B-tree y Extendible Hashing) con D2 de 100 000 filas.
 - `bench_5.2/`: comparación con B-tree con tres tamaños de D2, construcción con cinco repeticiones y tamaño del índice.
+
+**Etapa II** (detalle en la sección "Etapa II")
+- `bench_7.1/`, `bench_7.2/` y `bench_7.3/`: acceso sin índice, inserciones con B-tree y con hash, y registro de métricas.
+- `fragmentacion_asignacion/` y `replicacion/`: diseño de fragmentación, asignación y replicación.
+- `nodos/`: los tres nodos Docker (estrategia por zona y estrategia hash). Su guía completa está en `nodos/README.md`.
+- `generador/`: generador y carga de los datos distribuidos (1 200 000 viajes).
+- `bench_9.2/`, `caida_10.2/` y `carga_10.3/`: consultas locales y multinodo (y comparación de estrategias), caída de un nodo y cambio de carga.
+- `notas_etapa2/`: notas de cada actividad de la etapa II (de dónde sale cada tabla del informe).
+- `informe/`: el informe final en PDF.
 
 ---
 
@@ -156,6 +165,66 @@ Los tiempos dependen de la máquina, así que al repetirlos los números pueden 
 
 ---
 
+## Etapa II
+
+Todo lo de la etapa II es independiente del entorno de la etapa I: los nodos distribuidos usan la base `distribuido` y no tocan `hashing_db`. Las cifras de cada actividad y de dónde salen están en `notas_etapa2/` y en el informe (`informe/`).
+
+### Evaluación del índice (actividades 7.1, 7.2 y 7.3)
+
+Con el contenedor de la etapa I levantado (pasos 1 al 3 del flujo) y los CSV de D2 en `data/`:
+
+- **Sin índice, tres tamaños (7.1).** Dentro del contenedor:
+  ```
+  docker exec -w /app bd2_g6_hashing sh bench_7.1/correr_7.1.sh D2_aleatorio_100000 D2_aleatorio_500000 D2_aleatorio_1000000
+  docker cp bd2_g6_hashing:/app/bench_7.1/resultados/. bench_7.1/resultados/
+  ```
+  La corrida de 1 000 000 de filas tarda casi una hora: dejar la PC sin suspenderse.
+- **Inserciones (W3) sin índice (7.1).**
+  ```
+  docker exec -w /app bd2_g6_hashing sh bench_7.1/correr_7.1_inserciones.sh
+  docker cp bd2_g6_hashing:/app/bench_7.1/resultados_inserciones/. bench_7.1/resultados_inserciones/
+  ```
+- **Inserciones con B-tree y con hash (7.2).** Desde la raíz del proyecto, en Git Bash: `bash bench_7.2/run_experiments.sh`. Escribe `bench_7.2/resultados_crudos.txt`.
+- **Registro de métricas (7.3).** No corre benchmarks: lee los resultados de `bench_5.2/`, `bench_7.1/` y `bench_7.2/`, saca la mediana de las 5 repeticiones y guarda el resultado en `bench_7.3/metricas_7.3.csv` (el `.gitignore` ignora los `.csv`):
+  ```
+  python bench_7.3/calcular_metricas.py
+  ```
+
+Las mediciones no se hicieron todas en la misma PC (ver las tablas de equipos del informe): solo se comparan directamente las columnas de una misma PC.
+
+### Escenario distribuido (actividades 8.1 a 10.3)
+
+La guía paso a paso para levantar los tres nodos, crear las suscripciones, cargar los datos y verificar está en `nodos/README.md`. Resumen, desde la raíz del repo (en Git Bash, antes: `export MSYS_NO_PATHCONV=1`):
+
+```
+docker compose -f nodos/docker-compose.yml up -d --build
+docker exec nodo_a psql -U postgres -d distribuido -v nodo=A -f /nodos/suscripciones.sql
+docker exec nodo_b psql -U postgres -d distribuido -v nodo=B -f /nodos/suscripciones.sql
+docker exec nodo_c psql -U postgres -d distribuido -v nodo=C -f /nodos/suscripciones.sql
+py generador/generar_distribuido.py
+bash generador/cargar_distribuido.sh
+```
+
+Para borrar todo y empezar de cero: `docker compose -f nodos/docker-compose.yml down -v`.
+
+| Actividad | Qué es | Cómo se corre | Dónde está el detalle |
+|---|---|---|---|
+| 8.1 y 8.2 | Fragmentación y asignación | `fragmentacion_asignacion/esquema_global.sql` y `fragmentos.sql` (en una base aparte, **no** en `hashing_db`) | `fragmentacion_asignacion/INFORME_8.1y8.2.md` |
+| 8.3 | Plan de replicación | `replicacion/plan_replicacion.sql` y `replicacion_nodos.sql` | `replicacion/INFORME_8.3.md` |
+| 9.2 | Consultas locales y multinodo (latencias simuladas) | `REP=10 bash bench_9.2/consultas.sh` y `py bench_9.2/resumen.py` | `nodos/README.md` (sección 7) |
+| 10.1 | Zona frente a hash | Con los nodos hash levantados (`nodos/docker-compose.hash.yml`) y `bash generador/cargar_distribuido.sh hash`: `bash bench_9.2/consultas_hash.sh` y `py bench_9.2/resumen_10.1.py` | `generador/INFORME_10.1_hash.md` |
+| 10.2 | Caída de un nodo | `bash caida_10.2/caida_nodo.sh temporal A` (y `B`, `C`); al final `promocion B`; después `py caida_10.2/resumen_10.2.py` | `caida_10.2/INFORME_10.2.md` |
+| 10.3 | Cambio de carga | `py carga_10.3/carga_sur.py plan`, `calibrar`, `capacidad`, `correr`, `resumen` | `carga_10.3/INFORME_10.3.md` |
+
+Cuidados importantes:
+- **Las latencias de la rúbrica (A-B 20 ms, A-C 40 ms, B-C 25 ms) no se configuran en los contenedores ni se miden.** Se simulan como constantes en `bench_9.2/lib.sh`. Lo único medido es la ejecución en el nodo.
+- Los nodos de la estrategia por zona y los de hash usan los mismos nombres de contenedor y puertos: no se pueden tener levantados a la vez. Para cambiar de estrategia hay que hacer `down -v` y volver a cargar.
+- La prueba de promoción de 10.2 va al final, porque deja B apagado y la replicación cambiada. Después hay que rearmar los nodos (`down -v` y volver a cargar).
+- `bench_9.2/consultas.sh` sobrescribe `bench_9.2/resultados_9.2.csv`; los pasos para repetirlo sin dejar el original modificado están en `nodos/README.md`.
+- La estructura de Extendible Hashing no se replica ni persiste: en cada nodo hay que volver a armarla con `pg_insertar` sobre su tabla local.
+
+---
+
 ## Notas
 
 - El directorio vive solo mientras dure la sesión de `psql`. Al entrar de nuevo, repetir el paso 7.
@@ -171,4 +240,5 @@ Como grupo usamos herramientas de IA como apoyo: Claude (Anthropic) y, en una pa
 
 - Se usaron para escribir y revisar partes del código (por ejemplo, el split, la extensión para PostgreSQL y los scripts de pruebas y de benchmark), para depurar errores, para la estructura del repositorio y del entorno Docker, y para la redacción de este README y del informe.
 - El directorio y los buckets (`src/directorio.c` y `src/bucket.c`) se desarrollaron sin IA.
+- En la etapa II seguimos usando IA como apoyo (Claude y, en menor parte, Gemini) para escribir scripts, proponer y comparar alternativas de fragmentación y réplicas, calcular costos de red, resolver dudas de replicación lógica y redactar los informes. El detalle de cada actividad está en su informe (sección "Uso de IA") y en `notas_etapa2/`. La redacción del informe final y el análisis de resultados se hicieron con ayuda de Claude a partir de esos informes, sin mediciones nuevas.
 - En todos los casos revisamos lo que generó la herramienta contra el código del repositorio y ejecutamos las pruebas y las mediciones en el Docker del grupo (PostgreSQL 18.6).
