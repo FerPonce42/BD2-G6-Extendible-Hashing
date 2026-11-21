@@ -1,0 +1,3297 @@
+10.3 - 2026-11-21 00:42:17 - total=248 ops/s sur=0.6 dur=30s rep=5 clientes=32 cpus=1.0
+pgbench (PostgreSQL) 18.7 (Debian 18.7-1.pgdg13+5)
+
+===== base / principal rep 1 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2438
+number of failed transactions: 0 (0.000%)
+latency average = 17.948 ms
+latency stddev = 61.433 ms
+rate limit schedule lag: avg 0.149 (max 5.156) ms
+initial connection time = 99.191 ms
+tps = 81.335531 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 403 (targets 40.3% of total)
+ - 961 transactions (39.4% of total)
+ - number of transactions actually processed: 961 (tps = 32.060478)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.696 ms
+ - latency stddev = 20.270 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 179 (targets 17.9% of total)
+ - 451 transactions (18.5% of total)
+ - number of transactions actually processed: 451 (tps = 15.046072)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.516 ms
+ - latency stddev = 53.698 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 149 (targets 14.9% of total)
+ - 341 transactions (14.0% of total)
+ - number of transactions actually processed: 341 (tps = 11.376299)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 65.309 ms
+ - latency stddev = 130.063 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 224 (targets 22.4% of total)
+ - 558 transactions (22.9% of total)
+ - number of transactions actually processed: 558 (tps = 18.615761)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 9.463 ms
+ - latency stddev = 29.491 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 45 (targets 4.5% of total)
+ - 127 transactions (5.2% of total)
+ - number of transactions actually processed: 127 (tps = 4.236921)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 15.205 ms
+ - latency stddev = 48.657 ms
+
+===== base / principal rep 1 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3217
+number of failed transactions: 0 (0.000%)
+latency average = 207.501 ms
+latency stddev = 331.301 ms
+rate limit schedule lag: avg 74.572 (max 992.925) ms
+initial connection time = 107.769 ms
+tps = 107.205717 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 405 (targets 40.5% of total)
+ - 1263 transactions (39.3% of total)
+ - number of transactions actually processed: 1263 (tps = 42.089158)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 117.714 ms
+ - latency stddev = 193.622 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 119 (targets 11.9% of total)
+ - 378 transactions (11.8% of total)
+ - number of transactions actually processed: 378 (tps = 12.596755)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 568.523 ms
+ - latency stddev = 592.654 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 190 (targets 19.0% of total)
+ - 642 transactions (20.0% of total)
+ - number of transactions actually processed: 642 (tps = 21.394489)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 177.520 ms
+ - latency stddev = 251.824 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 238 (targets 23.8% of total)
+ - 777 transactions (24.2% of total)
+ - number of transactions actually processed: 777 (tps = 25.893330)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 204.480 ms
+ - latency stddev = 275.128 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 48 (targets 4.8% of total)
+ - 154 transactions (4.8% of total)
+ - number of transactions actually processed: 154 (tps = 5.132011)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 199.955 ms
+ - latency stddev = 294.033 ms
+
+===== base / principal rep 1 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2523
+number of failed transactions: 0 (0.000%)
+latency average = 5.494 ms
+latency stddev = 18.992 ms
+rate limit schedule lag: avg 0.151 (max 5.859) ms
+initial connection time = 109.188 ms
+tps = 84.417299 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 145 (targets 14.5% of total)
+ - 346 transactions (13.7% of total)
+ - number of transactions actually processed: 346 (tps = 11.576847)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 24.494 ms
+ - latency stddev = 41.872 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 420 (targets 42.0% of total)
+ - 1071 transactions (42.4% of total)
+ - number of transactions actually processed: 1071 (tps = 35.834692)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.796 ms
+ - latency stddev = 7.838 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 174 (targets 17.4% of total)
+ - 430 transactions (17.0% of total)
+ - number of transactions actually processed: 430 (tps = 14.387411)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.604 ms
+ - latency stddev = 8.058 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 217 (targets 21.7% of total)
+ - 559 transactions (22.2% of total)
+ - number of transactions actually processed: 559 (tps = 18.703635)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.193 ms
+ - latency stddev = 9.032 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 43 (targets 4.3% of total)
+ - 117 transactions (4.6% of total)
+ - number of transactions actually processed: 117 (tps = 3.914714)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.764 ms
+ - latency stddev = 12.370 ms
+
+===== base / principal rep 2 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2512
+number of failed transactions: 0 (0.000%)
+latency average = 45.168 ms
+latency stddev = 156.442 ms
+rate limit schedule lag: avg 5.775 (max 411.487) ms
+initial connection time = 107.465 ms
+tps = 84.043234 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 403 (targets 40.3% of total)
+ - 931 transactions (37.1% of total)
+ - number of transactions actually processed: 931 (tps = 31.148189)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 12.978 ms
+ - latency stddev = 48.688 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 179 (targets 17.9% of total)
+ - 441 transactions (17.6% of total)
+ - number of transactions actually processed: 441 (tps = 14.754405)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 36.493 ms
+ - latency stddev = 94.300 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 149 (targets 14.9% of total)
+ - 419 transactions (16.7% of total)
+ - number of transactions actually processed: 419 (tps = 14.018358)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 143.184 ms
+ - latency stddev = 320.688 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 224 (targets 22.4% of total)
+ - 592 transactions (23.6% of total)
+ - number of transactions actually processed: 592 (tps = 19.806367)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 35.741 ms
+ - latency stddev = 99.822 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 45 (targets 4.5% of total)
+ - 129 transactions (5.1% of total)
+ - number of transactions actually processed: 129 (tps = 4.315915)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 29.837 ms
+ - latency stddev = 96.223 ms
+
+===== base / principal rep 2 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3011
+number of failed transactions: 0 (0.000%)
+latency average = 49.547 ms
+latency stddev = 134.577 ms
+rate limit schedule lag: avg 1.302 (max 277.155) ms
+initial connection time = 102.881 ms
+tps = 100.728554 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 405 (targets 40.5% of total)
+ - 1259 transactions (41.8% of total)
+ - number of transactions actually processed: 1259 (tps = 42.117984)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 14.580 ms
+ - latency stddev = 32.958 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 119 (targets 11.9% of total)
+ - 330 transactions (11.0% of total)
+ - number of transactions actually processed: 330 (tps = 11.039662)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 206.867 ms
+ - latency stddev = 311.472 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 190 (targets 19.0% of total)
+ - 574 transactions (19.1% of total)
+ - number of transactions actually processed: 574 (tps = 19.202322)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 45.463 ms
+ - latency stddev = 89.116 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 238 (targets 23.8% of total)
+ - 718 transactions (23.8% of total)
+ - number of transactions actually processed: 718 (tps = 24.019629)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 42.576 ms
+ - latency stddev = 88.555 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 48 (targets 4.8% of total)
+ - 130 transactions (4.3% of total)
+ - number of transactions actually processed: 130 (tps = 4.348958)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 45.815 ms
+ - latency stddev = 96.588 ms
+
+===== base / principal rep 2 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2631
+number of failed transactions: 0 (0.000%)
+latency average = 8.279 ms
+latency stddev = 35.839 ms
+rate limit schedule lag: avg 0.121 (max 4.307) ms
+initial connection time = 107.249 ms
+tps = 87.275127 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 145 (targets 14.5% of total)
+ - 410 transactions (15.6% of total)
+ - number of transactions actually processed: 410 (tps = 13.600457)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 35.169 ms
+ - latency stddev = 79.641 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 420 (targets 42.0% of total)
+ - 1075 transactions (40.9% of total)
+ - number of transactions actually processed: 1075 (tps = 35.659735)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.866 ms
+ - latency stddev = 12.481 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 174 (targets 17.4% of total)
+ - 469 transactions (17.8% of total)
+ - number of transactions actually processed: 469 (tps = 15.557596)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.398 ms
+ - latency stddev = 6.940 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 217 (targets 21.7% of total)
+ - 570 transactions (21.7% of total)
+ - number of transactions actually processed: 570 (tps = 18.907952)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.046 ms
+ - latency stddev = 19.919 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 43 (targets 4.3% of total)
+ - 107 transactions (4.1% of total)
+ - number of transactions actually processed: 107 (tps = 3.549388)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.629 ms
+ - latency stddev = 9.171 ms
+
+===== base / principal rep 3 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2455
+number of failed transactions: 0 (0.000%)
+latency average = 6.250 ms
+latency stddev = 20.276 ms
+rate limit schedule lag: avg 0.113 (max 4.599) ms
+initial connection time = 94.235 ms
+tps = 82.110956 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 403 (targets 40.3% of total)
+ - 1045 transactions (42.6% of total)
+ - number of transactions actually processed: 1045 (tps = 34.951507)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.419 ms
+ - latency stddev = 6.725 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 179 (targets 17.9% of total)
+ - 393 transactions (16.0% of total)
+ - number of transactions actually processed: 393 (tps = 13.144442)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.316 ms
+ - latency stddev = 17.290 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 149 (targets 14.9% of total)
+ - 358 transactions (14.6% of total)
+ - number of transactions actually processed: 358 (tps = 11.973818)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 23.194 ms
+ - latency stddev = 39.466 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 224 (targets 22.4% of total)
+ - 553 transactions (22.5% of total)
+ - number of transactions actually processed: 553 (tps = 18.495869)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.261 ms
+ - latency stddev = 16.306 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 45 (targets 4.5% of total)
+ - 106 transactions (4.3% of total)
+ - number of transactions actually processed: 106 (tps = 3.545320)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.079 ms
+ - latency stddev = 9.226 ms
+
+===== base / principal rep 3 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3105
+number of failed transactions: 0 (0.000%)
+latency average = 30.776 ms
+latency stddev = 84.346 ms
+rate limit schedule lag: avg 0.114 (max 11.288) ms
+initial connection time = 95.895 ms
+tps = 102.568314 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 405 (targets 40.5% of total)
+ - 1285 transactions (41.4% of total)
+ - number of transactions actually processed: 1285 (tps = 42.447756)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 9.047 ms
+ - latency stddev = 23.299 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 119 (targets 11.9% of total)
+ - 393 transactions (12.7% of total)
+ - number of transactions actually processed: 393 (tps = 12.982076)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 124.887 ms
+ - latency stddev = 182.231 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 190 (targets 19.0% of total)
+ - 571 transactions (18.4% of total)
+ - number of transactions actually processed: 571 (tps = 18.861999)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 26.930 ms
+ - latency stddev = 54.961 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 238 (targets 23.8% of total)
+ - 726 transactions (23.4% of total)
+ - number of transactions actually processed: 726 (tps = 23.982156)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 23.385 ms
+ - latency stddev = 54.929 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 48 (targets 4.8% of total)
+ - 130 transactions (4.2% of total)
+ - number of transactions actually processed: 130 (tps = 4.294326)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.227 ms
+ - latency stddev = 45.829 ms
+
+===== base / principal rep 3 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2706
+number of failed transactions: 0 (0.000%)
+latency average = 3.774 ms
+latency stddev = 11.927 ms
+rate limit schedule lag: avg 0.113 (max 4.966) ms
+initial connection time = 91.287 ms
+tps = 90.486671 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 145 (targets 14.5% of total)
+ - 376 transactions (13.9% of total)
+ - number of transactions actually processed: 376 (tps = 12.573166)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 17.933 ms
+ - latency stddev = 25.201 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 420 (targets 42.0% of total)
+ - 1142 transactions (42.2% of total)
+ - number of transactions actually processed: 1142 (tps = 38.187649)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.951 ms
+ - latency stddev = 4.514 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 174 (targets 17.4% of total)
+ - 511 transactions (18.9% of total)
+ - number of transactions actually processed: 511 (tps = 17.087468)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.560 ms
+ - latency stddev = 3.925 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 217 (targets 21.7% of total)
+ - 542 transactions (20.0% of total)
+ - number of transactions actually processed: 542 (tps = 18.124086)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.378 ms
+ - latency stddev = 6.413 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 43 (targets 4.3% of total)
+ - 135 transactions (5.0% of total)
+ - number of transactions actually processed: 135 (tps = 4.514302)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.195 ms
+ - latency stddev = 5.684 ms
+
+===== base / principal rep 4 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2507
+number of failed transactions: 0 (0.000%)
+latency average = 7.482 ms
+latency stddev = 29.495 ms
+rate limit schedule lag: avg 0.119 (max 5.213) ms
+initial connection time = 96.283 ms
+tps = 83.866714 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 403 (targets 40.3% of total)
+ - 1050 transactions (41.9% of total)
+ - number of transactions actually processed: 1050 (tps = 35.125668)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.567 ms
+ - latency stddev = 8.612 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 179 (targets 17.9% of total)
+ - 411 transactions (16.4% of total)
+ - number of transactions actually processed: 411 (tps = 13.749190)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.323 ms
+ - latency stddev = 9.852 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 149 (targets 14.9% of total)
+ - 379 transactions (15.1% of total)
+ - number of transactions actually processed: 379 (tps = 12.678693)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 31.529 ms
+ - latency stddev = 65.715 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 224 (targets 22.4% of total)
+ - 555 transactions (22.1% of total)
+ - number of transactions actually processed: 555 (tps = 18.566424)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.765 ms
+ - latency stddev = 16.699 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 45 (targets 4.5% of total)
+ - 112 transactions (4.5% of total)
+ - number of transactions actually processed: 112 (tps = 3.746738)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.939 ms
+ - latency stddev = 8.232 ms
+
+===== base / principal rep 4 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3161
+number of failed transactions: 0 (0.000%)
+latency average = 33.664 ms
+latency stddev = 85.080 ms
+rate limit schedule lag: avg 0.287 (max 82.397) ms
+initial connection time = 96.510 ms
+tps = 105.742192 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 405 (targets 40.5% of total)
+ - 1312 transactions (41.5% of total)
+ - number of transactions actually processed: 1312 (tps = 43.889199)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 9.695 ms
+ - latency stddev = 23.296 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 119 (targets 11.9% of total)
+ - 367 transactions (11.6% of total)
+ - number of transactions actually processed: 367 (tps = 12.276933)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 129.672 ms
+ - latency stddev = 181.634 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 190 (targets 19.0% of total)
+ - 579 transactions (18.3% of total)
+ - number of transactions actually processed: 579 (tps = 19.368785)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 34.332 ms
+ - latency stddev = 67.173 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 238 (targets 23.8% of total)
+ - 741 transactions (23.4% of total)
+ - number of transactions actually processed: 741 (tps = 24.788031)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 28.523 ms
+ - latency stddev = 60.062 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 48 (targets 4.8% of total)
+ - 162 transactions (5.1% of total)
+ - number of transactions actually processed: 162 (tps = 5.419246)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 31.578 ms
+ - latency stddev = 61.919 ms
+
+===== base / principal rep 4 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2552
+number of failed transactions: 0 (0.000%)
+latency average = 5.003 ms
+latency stddev = 13.627 ms
+rate limit schedule lag: avg 0.118 (max 4.388) ms
+initial connection time = 93.753 ms
+tps = 85.318744 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 145 (targets 14.5% of total)
+ - 409 transactions (16.0% of total)
+ - number of transactions actually processed: 409 (tps = 13.673733)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.918 ms
+ - latency stddev = 24.459 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 420 (targets 42.0% of total)
+ - 1051 transactions (41.2% of total)
+ - number of transactions actually processed: 1051 (tps = 35.137147)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.621 ms
+ - latency stddev = 7.149 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 174 (targets 17.4% of total)
+ - 451 transactions (17.7% of total)
+ - number of transactions actually processed: 451 (tps = 15.077881)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.110 ms
+ - latency stddev = 6.368 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 217 (targets 21.7% of total)
+ - 547 transactions (21.4% of total)
+ - number of transactions actually processed: 547 (tps = 18.287364)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.243 ms
+ - latency stddev = 9.108 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 43 (targets 4.3% of total)
+ - 94 transactions (3.7% of total)
+ - number of transactions actually processed: 94 (tps = 3.142618)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.046 ms
+ - latency stddev = 5.162 ms
+
+===== base / principal rep 5 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2422
+number of failed transactions: 0 (0.000%)
+latency average = 6.977 ms
+latency stddev = 23.606 ms
+rate limit schedule lag: avg 0.105 (max 2.868) ms
+initial connection time = 97.685 ms
+tps = 81.004463 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 403 (targets 40.3% of total)
+ - 978 transactions (40.4% of total)
+ - number of transactions actually processed: 978 (tps = 32.709482)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.599 ms
+ - latency stddev = 6.912 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 179 (targets 17.9% of total)
+ - 461 transactions (19.0% of total)
+ - number of transactions actually processed: 461 (tps = 15.418273)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.614 ms
+ - latency stddev = 22.286 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 149 (targets 14.9% of total)
+ - 356 transactions (14.7% of total)
+ - number of transactions actually processed: 356 (tps = 11.906519)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 25.180 ms
+ - latency stddev = 46.236 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 224 (targets 22.4% of total)
+ - 530 transactions (21.9% of total)
+ - number of transactions actually processed: 530 (tps = 17.725997)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.680 ms
+ - latency stddev = 16.726 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 45 (targets 4.5% of total)
+ - 97 transactions (4.0% of total)
+ - number of transactions actually processed: 97 (tps = 3.244192)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.902 ms
+ - latency stddev = 12.243 ms
+
+===== base / principal rep 5 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3058
+number of failed transactions: 0 (0.000%)
+latency average = 14.595 ms
+latency stddev = 44.558 ms
+rate limit schedule lag: avg 0.108 (max 4.800) ms
+initial connection time = 96.370 ms
+tps = 102.279057 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 405 (targets 40.5% of total)
+ - 1276 transactions (41.7% of total)
+ - number of transactions actually processed: 1276 (tps = 42.677592)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.774 ms
+ - latency stddev = 14.968 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 119 (targets 11.9% of total)
+ - 342 transactions (11.2% of total)
+ - number of transactions actually processed: 342 (tps = 11.438665)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 65.721 ms
+ - latency stddev = 104.044 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 190 (targets 19.0% of total)
+ - 571 transactions (18.7% of total)
+ - number of transactions actually processed: 571 (tps = 19.097888)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 15.203 ms
+ - latency stddev = 30.969 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 238 (targets 23.8% of total)
+ - 726 transactions (23.7% of total)
+ - number of transactions actually processed: 726 (tps = 24.282078)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 8.635 ms
+ - latency stddev = 23.779 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 48 (targets 4.8% of total)
+ - 143 transactions (4.7% of total)
+ - number of transactions actually processed: 143 (tps = 4.782834)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.785 ms
+ - latency stddev = 23.003 ms
+
+===== base / principal rep 5 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2530
+number of failed transactions: 0 (0.000%)
+latency average = 6.045 ms
+latency stddev = 20.135 ms
+rate limit schedule lag: avg 0.106 (max 5.070) ms
+initial connection time = 95.668 ms
+tps = 84.601198 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 145 (targets 14.5% of total)
+ - 377 transactions (14.9% of total)
+ - number of transactions actually processed: 377 (tps = 12.606582)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 25.576 ms
+ - latency stddev = 40.245 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 420 (targets 42.0% of total)
+ - 1063 transactions (42.0% of total)
+ - number of transactions actually processed: 1063 (tps = 35.545879)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.239 ms
+ - latency stddev = 11.247 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 174 (targets 17.4% of total)
+ - 399 transactions (15.8% of total)
+ - number of transactions actually processed: 399 (tps = 13.342244)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.755 ms
+ - latency stddev = 10.146 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 217 (targets 21.7% of total)
+ - 573 transactions (22.6% of total)
+ - number of transactions actually processed: 573 (tps = 19.160667)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.962 ms
+ - latency stddev = 9.461 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 43 (targets 4.3% of total)
+ - 118 transactions (4.7% of total)
+ - number of transactions actually processed: 118 (tps = 3.945827)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.024 ms
+ - latency stddev = 12.618 ms
+
+===== sur / principal rep 1 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1887
+number of failed transactions: 0 (0.000%)
+latency average = 4.697 ms
+latency stddev = 11.110 ms
+rate limit schedule lag: avg 0.103 (max 3.323) ms
+initial connection time = 100.969 ms
+tps = 62.949487 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 469 (targets 46.9% of total)
+ - 844 transactions (44.7% of total)
+ - number of transactions actually processed: 844 (tps = 28.155467)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.742 ms
+ - latency stddev = 3.570 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 134 (targets 13.4% of total)
+ - 258 transactions (13.7% of total)
+ - number of transactions actually processed: 258 (tps = 8.606766)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.223 ms
+ - latency stddev = 6.909 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 196 (targets 19.6% of total)
+ - 384 transactions (20.3% of total)
+ - number of transactions actually processed: 384 (tps = 12.810070)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 16.781 ms
+ - latency stddev = 18.516 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 168 (targets 16.8% of total)
+ - 343 transactions (18.2% of total)
+ - number of transactions actually processed: 343 (tps = 11.442329)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.801 ms
+ - latency stddev = 3.922 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 34 (targets 3.4% of total)
+ - 58 transactions (3.1% of total)
+ - number of transactions actually processed: 58 (tps = 1.934854)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.471 ms
+ - latency stddev = 1.246 ms
+
+===== sur / principal rep 1 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1940
+number of failed transactions: 0 (0.000%)
+latency average = 11.406 ms
+latency stddev = 35.114 ms
+rate limit schedule lag: avg 0.101 (max 2.211) ms
+initial connection time = 96.608 ms
+tps = 64.859934 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 372 (targets 37.2% of total)
+ - 733 transactions (37.8% of total)
+ - number of transactions actually processed: 733 (tps = 24.506357)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.102 ms
+ - latency stddev = 9.309 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 191 (targets 19.1% of total)
+ - 342 transactions (17.6% of total)
+ - number of transactions actually processed: 342 (tps = 11.434071)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 43.600 ms
+ - latency stddev = 67.348 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 175 (targets 17.5% of total)
+ - 331 transactions (17.1% of total)
+ - number of transactions actually processed: 331 (tps = 11.066308)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 8.649 ms
+ - latency stddev = 19.384 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 219 (targets 21.9% of total)
+ - 435 transactions (22.4% of total)
+ - number of transactions actually processed: 435 (tps = 14.543336)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.861 ms
+ - latency stddev = 16.601 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 44 (targets 4.4% of total)
+ - 99 transactions (5.1% of total)
+ - number of transactions actually processed: 99 (tps = 3.309863)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.136 ms
+ - latency stddev = 30.563 ms
+
+===== sur / principal rep 1 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4198
+number of failed transactions: 0 (0.000%)
+latency average = 3.129 ms
+latency stddev = 12.482 ms
+rate limit schedule lag: avg 0.104 (max 4.341) ms
+initial connection time = 95.509 ms
+tps = 140.402779 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 86 (targets 8.6% of total)
+ - 349 transactions (8.3% of total)
+ - number of transactions actually processed: 349 (tps = 11.672361)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.543 ms
+ - latency stddev = 32.297 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 400 (targets 40.0% of total)
+ - 1708 transactions (40.7% of total)
+ - number of transactions actually processed: 1708 (tps = 57.124332)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.092 ms
+ - latency stddev = 5.976 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 206 (targets 20.6% of total)
+ - 844 transactions (20.1% of total)
+ - number of transactions actually processed: 844 (tps = 28.227715)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.725 ms
+ - latency stddev = 5.603 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 257 (targets 25.7% of total)
+ - 1083 transactions (25.8% of total)
+ - number of transactions actually processed: 1083 (tps = 36.221108)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.194 ms
+ - latency stddev = 7.368 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 51 (targets 5.1% of total)
+ - 214 transactions (5.1% of total)
+ - number of transactions actually processed: 214 (tps = 7.157264)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.891 ms
+ - latency stddev = 13.667 ms
+
+===== sur / principal rep 2 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1873
+number of failed transactions: 0 (0.000%)
+latency average = 21.218 ms
+latency stddev = 92.141 ms
+rate limit schedule lag: avg 0.139 (max 6.895) ms
+initial connection time = 91.929 ms
+tps = 62.611101 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 469 (targets 46.9% of total)
+ - 886 transactions (47.3% of total)
+ - number of transactions actually processed: 886 (tps = 29.617424)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.728 ms
+ - latency stddev = 19.813 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 134 (targets 13.4% of total)
+ - 256 transactions (13.7% of total)
+ - number of transactions actually processed: 256 (tps = 8.557630)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 15.685 ms
+ - latency stddev = 45.449 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 196 (targets 19.6% of total)
+ - 321 transactions (17.1% of total)
+ - number of transactions actually processed: 321 (tps = 10.730466)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 76.079 ms
+ - latency stddev = 200.432 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 168 (targets 16.8% of total)
+ - 333 transactions (17.8% of total)
+ - number of transactions actually processed: 333 (tps = 11.131605)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 15.377 ms
+ - latency stddev = 48.316 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 34 (targets 3.4% of total)
+ - 77 transactions (4.1% of total)
+ - number of transactions actually processed: 77 (tps = 2.573975)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 14.394 ms
+ - latency stddev = 44.214 ms
+
+===== sur / principal rep 2 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2005
+number of failed transactions: 0 (0.000%)
+latency average = 73.935 ms
+latency stddev = 212.837 ms
+rate limit schedule lag: avg 5.851 (max 477.223) ms
+initial connection time = 93.532 ms
+tps = 67.080642 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 372 (targets 37.2% of total)
+ - 785 transactions (39.2% of total)
+ - number of transactions actually processed: 785 (tps = 26.263493)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 21.137 ms
+ - latency stddev = 61.200 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 191 (targets 19.1% of total)
+ - 375 transactions (18.7% of total)
+ - number of transactions actually processed: 375 (tps = 12.546255)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 255.437 ms
+ - latency stddev = 416.652 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 175 (targets 17.5% of total)
+ - 325 transactions (16.2% of total)
+ - number of transactions actually processed: 325 (tps = 10.873421)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 52.243 ms
+ - latency stddev = 109.594 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 219 (targets 21.9% of total)
+ - 421 transactions (21.0% of total)
+ - number of transactions actually processed: 421 (tps = 14.085262)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 37.137 ms
+ - latency stddev = 81.420 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 44 (targets 4.4% of total)
+ - 98 transactions (4.9% of total)
+ - number of transactions actually processed: 98 (tps = 3.278755)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 32.752 ms
+ - latency stddev = 82.112 ms
+
+===== sur / principal rep 2 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4369
+number of failed transactions: 0 (0.000%)
+latency average = 40.254 ms
+latency stddev = 137.062 ms
+rate limit schedule lag: avg 14.625 (max 561.121) ms
+initial connection time = 95.592 ms
+tps = 146.134218 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 86 (targets 8.6% of total)
+ - 378 transactions (8.7% of total)
+ - number of transactions actually processed: 378 (tps = 12.643336)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 141.084 ms
+ - latency stddev = 318.518 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 400 (targets 40.0% of total)
+ - 1727 transactions (39.5% of total)
+ - number of transactions actually processed: 1727 (tps = 57.764659)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 22.930 ms
+ - latency stddev = 78.742 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 206 (targets 20.6% of total)
+ - 938 transactions (21.5% of total)
+ - number of transactions actually processed: 938 (tps = 31.374204)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.910 ms
+ - latency stddev = 68.820 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 257 (targets 25.7% of total)
+ - 1097 transactions (25.1% of total)
+ - number of transactions actually processed: 1097 (tps = 36.692432)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 49.430 ms
+ - latency stddev = 136.147 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 51 (targets 5.1% of total)
+ - 228 transactions (5.2% of total)
+ - number of transactions actually processed: 228 (tps = 7.626139)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 43.333 ms
+ - latency stddev = 121.809 ms
+
+===== sur / principal rep 3 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1976
+number of failed transactions: 0 (0.000%)
+latency average = 7.948 ms
+latency stddev = 28.676 ms
+rate limit schedule lag: avg 0.106 (max 4.590) ms
+initial connection time = 105.682 ms
+tps = 66.130125 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 469 (targets 46.9% of total)
+ - 896 transactions (45.3% of total)
+ - number of transactions actually processed: 896 (tps = 29.986129)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.487 ms
+ - latency stddev = 7.161 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 134 (targets 13.4% of total)
+ - 264 transactions (13.4% of total)
+ - number of transactions actually processed: 264 (tps = 8.835199)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.763 ms
+ - latency stddev = 20.741 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 196 (targets 19.6% of total)
+ - 391 transactions (19.8% of total)
+ - number of transactions actually processed: 391 (tps = 13.085465)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 26.358 ms
+ - latency stddev = 55.297 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 168 (targets 16.8% of total)
+ - 361 transactions (18.3% of total)
+ - number of transactions actually processed: 361 (tps = 12.081465)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.810 ms
+ - latency stddev = 14.886 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 34 (targets 3.4% of total)
+ - 64 transactions (3.2% of total)
+ - number of transactions actually processed: 64 (tps = 2.141866)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.380 ms
+ - latency stddev = 15.552 ms
+
+===== sur / principal rep 3 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1883
+number of failed transactions: 0 (0.000%)
+latency average = 14.312 ms
+latency stddev = 42.032 ms
+rate limit schedule lag: avg 0.107 (max 3.540) ms
+initial connection time = 108.098 ms
+tps = 63.009611 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 372 (targets 37.2% of total)
+ - 701 transactions (37.2% of total)
+ - number of transactions actually processed: 701 (tps = 23.457109)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.308 ms
+ - latency stddev = 12.576 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 191 (targets 19.1% of total)
+ - 349 transactions (18.5% of total)
+ - number of transactions actually processed: 349 (tps = 11.678361)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 48.810 ms
+ - latency stddev = 79.945 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 175 (targets 17.5% of total)
+ - 321 transactions (17.0% of total)
+ - number of transactions actually processed: 321 (tps = 10.741415)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 11.161 ms
+ - latency stddev = 22.469 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 219 (targets 21.9% of total)
+ - 429 transactions (22.8% of total)
+ - number of transactions actually processed: 429 (tps = 14.355349)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 8.190 ms
+ - latency stddev = 25.217 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 44 (targets 4.4% of total)
+ - 83 transactions (4.4% of total)
+ - number of transactions actually processed: 83 (tps = 2.777375)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 6.032 ms
+ - latency stddev = 17.406 ms
+
+===== sur / principal rep 3 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4346
+number of failed transactions: 0 (0.000%)
+latency average = 4.690 ms
+latency stddev = 19.961 ms
+rate limit schedule lag: avg 0.105 (max 4.651) ms
+initial connection time = 105.266 ms
+tps = 145.377723 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 86 (targets 8.6% of total)
+ - 360 transactions (8.3% of total)
+ - number of transactions actually processed: 360 (tps = 12.042333)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 24.435 ms
+ - latency stddev = 49.609 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 400 (targets 40.0% of total)
+ - 1750 transactions (40.3% of total)
+ - number of transactions actually processed: 1750 (tps = 58.539120)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.831 ms
+ - latency stddev = 8.770 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 206 (targets 20.6% of total)
+ - 903 transactions (20.8% of total)
+ - number of transactions actually processed: 903 (tps = 30.206186)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.965 ms
+ - latency stddev = 11.105 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 257 (targets 25.7% of total)
+ - 1110 transactions (25.5% of total)
+ - number of transactions actually processed: 1110 (tps = 37.130527)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.518 ms
+ - latency stddev = 18.746 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 51 (targets 5.1% of total)
+ - 223 transactions (5.1% of total)
+ - number of transactions actually processed: 223 (tps = 7.459556)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.101 ms
+ - latency stddev = 15.271 ms
+
+===== sur / principal rep 4 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1897
+number of failed transactions: 0 (0.000%)
+latency average = 11.180 ms
+latency stddev = 46.457 ms
+rate limit schedule lag: avg 0.121 (max 4.665) ms
+initial connection time = 94.818 ms
+tps = 63.518778 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 469 (targets 46.9% of total)
+ - 877 transactions (46.2% of total)
+ - number of transactions actually processed: 877 (tps = 29.365297)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.255 ms
+ - latency stddev = 10.497 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 134 (targets 13.4% of total)
+ - 253 transactions (13.3% of total)
+ - number of transactions actually processed: 253 (tps = 8.471403)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 11.173 ms
+ - latency stddev = 34.717 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 196 (targets 19.6% of total)
+ - 359 transactions (18.9% of total)
+ - number of transactions actually processed: 359 (tps = 12.020686)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 39.130 ms
+ - latency stddev = 93.725 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 168 (targets 16.8% of total)
+ - 338 transactions (17.8% of total)
+ - number of transactions actually processed: 338 (tps = 11.317526)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.304 ms
+ - latency stddev = 16.455 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 34 (targets 3.4% of total)
+ - 70 transactions (3.7% of total)
+ - number of transactions actually processed: 70 (tps = 2.343866)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 8.058 ms
+ - latency stddev = 34.828 ms
+
+===== sur / principal rep 4 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1815
+number of failed transactions: 0 (0.000%)
+latency average = 19.162 ms
+latency stddev = 77.411 ms
+rate limit schedule lag: avg 0.114 (max 3.197) ms
+initial connection time = 97.019 ms
+tps = 60.700352 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 372 (targets 37.2% of total)
+ - 693 transactions (38.2% of total)
+ - number of transactions actually processed: 693 (tps = 23.176498)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.890 ms
+ - latency stddev = 13.487 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 191 (targets 19.1% of total)
+ - 318 transactions (17.5% of total)
+ - number of transactions actually processed: 318 (tps = 10.635103)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 76.125 ms
+ - latency stddev = 165.429 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 175 (targets 17.5% of total)
+ - 320 transactions (17.6% of total)
+ - number of transactions actually processed: 320 (tps = 10.701990)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 14.885 ms
+ - latency stddev = 40.980 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 219 (targets 21.9% of total)
+ - 395 transactions (21.8% of total)
+ - number of transactions actually processed: 395 (tps = 13.210269)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 6.590 ms
+ - latency stddev = 22.476 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 44 (targets 4.4% of total)
+ - 89 transactions (4.9% of total)
+ - number of transactions actually processed: 89 (tps = 2.976491)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.736 ms
+ - latency stddev = 19.186 ms
+
+===== sur / principal rep 4 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4343
+number of failed transactions: 0 (0.000%)
+latency average = 17.300 ms
+latency stddev = 83.290 ms
+rate limit schedule lag: avg 1.189 (max 219.243) ms
+initial connection time = 95.848 ms
+tps = 144.511508 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 86 (targets 8.6% of total)
+ - 399 transactions (9.2% of total)
+ - number of transactions actually processed: 399 (tps = 13.276558)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 88.247 ms
+ - latency stddev = 231.784 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 400 (targets 40.0% of total)
+ - 1745 transactions (40.2% of total)
+ - number of transactions actually processed: 1745 (tps = 58.064145)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 6.650 ms
+ - latency stddev = 25.579 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 206 (targets 20.6% of total)
+ - 904 transactions (20.8% of total)
+ - number of transactions actually processed: 904 (tps = 30.080222)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.579 ms
+ - latency stddev = 28.253 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 257 (targets 25.7% of total)
+ - 1073 transactions (24.7% of total)
+ - number of transactions actually processed: 1073 (tps = 35.703626)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 18.183 ms
+ - latency stddev = 62.903 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 51 (targets 5.1% of total)
+ - 222 transactions (5.1% of total)
+ - number of transactions actually processed: 222 (tps = 7.386957)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 8.812 ms
+ - latency stddev = 35.189 ms
+
+===== sur / principal rep 5 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1850
+number of failed transactions: 0 (0.000%)
+latency average = 7.783 ms
+latency stddev = 22.093 ms
+rate limit schedule lag: avg 0.110 (max 5.671) ms
+initial connection time = 102.337 ms
+tps = 61.925837 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 469 (targets 46.9% of total)
+ - 844 transactions (45.6% of total)
+ - number of transactions actually processed: 844 (tps = 28.251571)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.405 ms
+ - latency stddev = 6.049 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 134 (targets 13.4% of total)
+ - 267 transactions (14.4% of total)
+ - number of transactions actually processed: 267 (tps = 8.937405)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.862 ms
+ - latency stddev = 16.448 ms
+SQL script 3: /scripts/L4_norte.sql
+ - weight: 196 (targets 19.6% of total)
+ - 344 transactions (18.6% of total)
+ - number of transactions actually processed: 344 (tps = 11.514858)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 29.087 ms
+ - latency stddev = 40.748 ms
+SQL script 4: /scripts/E1_norte.sql
+ - weight: 168 (targets 16.8% of total)
+ - 324 transactions (17.5% of total)
+ - number of transactions actually processed: 324 (tps = 10.845390)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.916 ms
+ - latency stddev = 8.761 ms
+SQL script 5: /scripts/E2_norte.sql
+ - weight: 34 (targets 3.4% of total)
+ - 71 transactions (3.8% of total)
+ - number of transactions actually processed: 71 (tps = 2.376613)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.293 ms
+ - latency stddev = 7.086 ms
+
+===== sur / principal rep 5 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1906
+number of failed transactions: 0 (0.000%)
+latency average = 17.033 ms
+latency stddev = 50.822 ms
+rate limit schedule lag: avg 0.112 (max 2.810) ms
+initial connection time = 94.351 ms
+tps = 63.756317 (without initial connection time)
+SQL script 1: /scripts/L1_centro.sql
+ - weight: 372 (targets 37.2% of total)
+ - 705 transactions (37.0% of total)
+ - number of transactions actually processed: 705 (tps = 23.582478)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.503 ms
+ - latency stddev = 14.710 ms
+SQL script 2: /scripts/L4_centro.sql
+ - weight: 191 (targets 19.1% of total)
+ - 377 transactions (19.8% of total)
+ - number of transactions actually processed: 377 (tps = 12.610772)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 56.472 ms
+ - latency stddev = 96.063 ms
+SQL script 3: /scripts/L2_centro.sql
+ - weight: 175 (targets 17.5% of total)
+ - 349 transactions (18.3% of total)
+ - number of transactions actually processed: 349 (tps = 11.674163)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 13.519 ms
+ - latency stddev = 32.834 ms
+SQL script 4: /scripts/E1_centro.sql
+ - weight: 219 (targets 21.9% of total)
+ - 390 transactions (20.5% of total)
+ - number of transactions actually processed: 390 (tps = 13.045626)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 6.382 ms
+ - latency stddev = 16.719 ms
+SQL script 5: /scripts/E2_centro.sql
+ - weight: 44 (targets 4.4% of total)
+ - 85 transactions (4.5% of total)
+ - number of transactions actually processed: 85 (tps = 2.843278)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 9.326 ms
+ - latency stddev = 25.571 ms
+
+===== sur / principal rep 5 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4341
+number of failed transactions: 0 (0.000%)
+latency average = 8.460 ms
+latency stddev = 35.252 ms
+rate limit schedule lag: avg 0.122 (max 23.205) ms
+initial connection time = 100.271 ms
+tps = 144.982159 (without initial connection time)
+SQL script 1: /scripts/L4_sur.sql
+ - weight: 86 (targets 8.6% of total)
+ - 398 transactions (9.2% of total)
+ - number of transactions actually processed: 398 (tps = 13.292536)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 46.125 ms
+ - latency stddev = 94.012 ms
+SQL script 2: /scripts/L1_sur.sql
+ - weight: 400 (targets 40.0% of total)
+ - 1695 transactions (39.0% of total)
+ - number of transactions actually processed: 1695 (tps = 56.610173)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3.057 ms
+ - latency stddev = 12.490 ms
+SQL script 3: /scripts/L2_sur.sql
+ - weight: 206 (targets 20.6% of total)
+ - 940 transactions (21.7% of total)
+ - number of transactions actually processed: 940 (tps = 31.394432)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4.714 ms
+ - latency stddev = 14.964 ms
+SQL script 4: /scripts/E1_sur.sql
+ - weight: 257 (targets 25.7% of total)
+ - 1094 transactions (25.2% of total)
+ - number of transactions actually processed: 1094 (tps = 36.537775)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.002 ms
+ - latency stddev = 25.481 ms
+SQL script 5: /scripts/E2_sur.sql
+ - weight: 51 (targets 5.1% of total)
+ - 214 transactions (4.9% of total)
+ - number of transactions actually processed: 214 (tps = 7.147243)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5.122 ms
+ - latency stddev = 16.701 ms
+
+===== sur / replica rep 1 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1615
+number of failed transactions: 0 (0.000%)
+latency average = 48.946 ms
+latency stddev = 139.666 ms
+rate limit schedule lag: avg 0.223 (max 6.484) ms
+initial connection time = 94.680 ms
+tps = 54.043601 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 448 transactions (27.7% of total)
+ - number of transactions actually processed: 448 (tps = 14.991661)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 10.144 ms
+ - latency stddev = 28.938 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 269 transactions (16.7% of total)
+ - number of transactions actually processed: 269 (tps = 9.001690)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 34.220 ms
+ - latency stddev = 74.362 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 131 transactions (8.1% of total)
+ - number of transactions actually processed: 131 (tps = 4.383722)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 11.293 ms
+ - latency stddev = 32.011 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 370 transactions (22.9% of total)
+ - number of transactions actually processed: 370 (tps = 12.381506)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 144.027 ms
+ - latency stddev = 250.710 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 342 transactions (21.2% of total)
+ - number of transactions actually processed: 342 (tps = 11.444527)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 26.726 ms
+ - latency stddev = 66.284 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 55 transactions (3.4% of total)
+ - number of transactions actually processed: 55 (tps = 1.840494)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 25.247 ms
+ - latency stddev = 71.831 ms
+
+===== sur / replica rep 1 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2511
+number of failed transactions: 0 (0.000%)
+latency average = 1819.926 ms
+latency stddev = 1413.238 ms
+rate limit schedule lag: avg 1476.296 (max 4244.982) ms
+initial connection time = 93.698 ms
+tps = 81.361877 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 133 (targets 13.3% of total)
+ - 360 transactions (14.3% of total)
+ - number of transactions actually processed: 360 (tps = 11.664785)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2386.139 ms
+ - latency stddev = 1491.377 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 133 (targets 13.3% of total)
+ - 344 transactions (13.7% of total)
+ - number of transactions actually processed: 344 (tps = 11.146350)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2335.012 ms
+ - latency stddev = 1463.730 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 212 (targets 21.2% of total)
+ - 522 transactions (20.8% of total)
+ - number of transactions actually processed: 522 (tps = 16.913939)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1429.092 ms
+ - latency stddev = 1296.248 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 121 (targets 12.1% of total)
+ - 290 transactions (11.5% of total)
+ - number of transactions actually processed: 290 (tps = 9.396633)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1685.576 ms
+ - latency stddev = 1318.877 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 61 (targets 6.1% of total)
+ - 175 transactions (7.0% of total)
+ - number of transactions actually processed: 175 (tps = 5.670382)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1700.627 ms
+ - latency stddev = 1339.113 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 152 (targets 15.2% of total)
+ - 366 transactions (14.6% of total)
+ - number of transactions actually processed: 366 (tps = 11.859198)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1842.894 ms
+ - latency stddev = 1369.635 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 30 (targets 3.0% of total)
+ - 83 transactions (3.3% of total)
+ - number of transactions actually processed: 83 (tps = 2.689381)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1707.886 ms
+ - latency stddev = 1333.044 ms
+SQL script 8: /scripts/L1_norte.sql
+ - weight: 159 (targets 15.9% of total)
+ - 371 transactions (14.8% of total)
+ - number of transactions actually processed: 371 (tps = 12.021209)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1506.507 ms
+ - latency stddev = 1288.655 ms
+
+===== sur / replica rep 1 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3865
+number of failed transactions: 0 (0.000%)
+latency average = 1.416 ms
+latency stddev = 1.489 ms
+rate limit schedule lag: avg 0.200 (max 6.762) ms
+initial connection time = 96.354 ms
+tps = 129.250355 (without initial connection time)
+SQL script 1: /scripts/L1_sur.sql
+ - weight: 412 (targets 41.2% of total)
+ - 1597 transactions (41.3% of total)
+ - number of transactions actually processed: 1597 (tps = 53.405645)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.655 ms
+ - latency stddev = 0.725 ms
+SQL script 2: /scripts/L2_sur.sql
+ - weight: 235 (targets 23.5% of total)
+ - 878 transactions (22.7% of total)
+ - number of transactions actually processed: 878 (tps = 29.361400)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.919 ms
+ - latency stddev = 1.724 ms
+SQL script 3: /scripts/E1_sur.sql
+ - weight: 294 (targets 29.4% of total)
+ - 1149 transactions (29.7% of total)
+ - number of transactions actually processed: 1149 (tps = 38.423974)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.969 ms
+ - latency stddev = 1.597 ms
+SQL script 4: /scripts/E2_sur.sql
+ - weight: 59 (targets 5.9% of total)
+ - 241 transactions (6.2% of total)
+ - number of transactions actually processed: 241 (tps = 8.059337)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.995 ms
+ - latency stddev = 1.590 ms
+
+===== sur / replica rep 2 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1576
+number of failed transactions: 0 (0.000%)
+latency average = 207.861 ms
+latency stddev = 426.410 ms
+rate limit schedule lag: avg 28.422 (max 635.123) ms
+initial connection time = 99.425 ms
+tps = 52.766782 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 458 transactions (29.1% of total)
+ - number of transactions actually processed: 458 (tps = 15.334509)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 66.073 ms
+ - latency stddev = 134.681 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 264 transactions (16.8% of total)
+ - number of transactions actually processed: 264 (tps = 8.839106)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 138.242 ms
+ - latency stddev = 215.047 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 100 transactions (6.3% of total)
+ - number of transactions actually processed: 100 (tps = 3.348146)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 33.913 ms
+ - latency stddev = 80.633 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 389 transactions (24.7% of total)
+ - number of transactions actually processed: 389 (tps = 13.024288)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 530.059 ms
+ - latency stddev = 703.199 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 318 transactions (20.2% of total)
+ - number of transactions actually processed: 318 (tps = 10.647105)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 141.660 ms
+ - latency stddev = 221.979 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 47 transactions (3.0% of total)
+ - number of transactions actually processed: 47 (tps = 1.573629)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 131.919 ms
+ - latency stddev = 195.967 ms
+
+===== sur / replica rep 2 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2395
+number of failed transactions: 0 (0.000%)
+latency average = 3785.218 ms
+latency stddev = 1270.620 ms
+rate limit schedule lag: avg 3389.111 (max 5711.636) ms
+initial connection time = 100.175 ms
+tps = 78.419192 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 133 (targets 13.3% of total)
+ - 307 transactions (12.8% of total)
+ - number of transactions actually processed: 307 (tps = 10.052063)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4423.613 ms
+ - latency stddev = 1280.534 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 133 (targets 13.3% of total)
+ - 311 transactions (13.0% of total)
+ - number of transactions actually processed: 311 (tps = 10.183035)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4424.552 ms
+ - latency stddev = 1215.415 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 212 (targets 21.2% of total)
+ - 500 transactions (20.9% of total)
+ - number of transactions actually processed: 500 (tps = 16.371439)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3486.088 ms
+ - latency stddev = 1171.796 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 121 (targets 12.1% of total)
+ - 322 transactions (13.4% of total)
+ - number of transactions actually processed: 322 (tps = 10.543207)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3675.856 ms
+ - latency stddev = 1104.952 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 61 (targets 6.1% of total)
+ - 162 transactions (6.8% of total)
+ - number of transactions actually processed: 162 (tps = 5.304346)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3493.581 ms
+ - latency stddev = 1229.046 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 152 (targets 15.2% of total)
+ - 363 transactions (15.2% of total)
+ - number of transactions actually processed: 363 (tps = 11.885665)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3765.880 ms
+ - latency stddev = 1157.979 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 30 (targets 3.0% of total)
+ - 71 transactions (3.0% of total)
+ - number of transactions actually processed: 71 (tps = 2.324744)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3575.762 ms
+ - latency stddev = 1205.227 ms
+SQL script 8: /scripts/L1_norte.sql
+ - weight: 159 (targets 15.9% of total)
+ - 359 transactions (15.0% of total)
+ - number of transactions actually processed: 359 (tps = 11.754693)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3392.727 ms
+ - latency stddev = 1310.335 ms
+
+===== sur / replica rep 2 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3758
+number of failed transactions: 0 (0.000%)
+latency average = 1.663 ms
+latency stddev = 1.832 ms
+rate limit schedule lag: avg 0.265 (max 11.541) ms
+initial connection time = 99.393 ms
+tps = 125.774738 (without initial connection time)
+SQL script 1: /scripts/L1_sur.sql
+ - weight: 412 (targets 41.2% of total)
+ - 1565 transactions (41.6% of total)
+ - number of transactions actually processed: 1565 (tps = 52.378250)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.773 ms
+ - latency stddev = 0.968 ms
+SQL script 2: /scripts/L2_sur.sql
+ - weight: 235 (targets 23.5% of total)
+ - 865 transactions (23.0% of total)
+ - number of transactions actually processed: 865 (tps = 28.950279)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.188 ms
+ - latency stddev = 1.967 ms
+SQL script 3: /scripts/E1_sur.sql
+ - weight: 294 (targets 29.4% of total)
+ - 1104 transactions (29.4% of total)
+ - number of transactions actually processed: 1104 (tps = 36.949258)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.389 ms
+ - latency stddev = 2.096 ms
+SQL script 4: /scripts/E2_sur.sql
+ - weight: 59 (targets 5.9% of total)
+ - 224 transactions (6.0% of total)
+ - number of transactions actually processed: 224 (tps = 7.496951)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.270 ms
+ - latency stddev = 1.895 ms
+
+===== sur / replica rep 3 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1603
+number of failed transactions: 0 (0.000%)
+latency average = 125.950 ms
+latency stddev = 341.378 ms
+rate limit schedule lag: avg 24.235 (max 708.649) ms
+initial connection time = 97.841 ms
+tps = 52.557829 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 436 transactions (27.2% of total)
+ - number of transactions actually processed: 436 (tps = 14.295205)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 39.824 ms
+ - latency stddev = 117.976 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 257 transactions (16.0% of total)
+ - number of transactions actually processed: 257 (tps = 8.426302)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 68.650 ms
+ - latency stddev = 154.416 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 130 transactions (8.1% of total)
+ - number of transactions actually processed: 130 (tps = 4.262332)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 49.347 ms
+ - latency stddev = 138.874 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 389 transactions (24.3% of total)
+ - number of transactions actually processed: 389 (tps = 12.754208)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 332.284 ms
+ - latency stddev = 585.332 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 335 transactions (20.9% of total)
+ - number of transactions actually processed: 335 (tps = 10.983701)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 81.178 ms
+ - latency stddev = 207.369 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 56 transactions (3.5% of total)
+ - number of transactions actually processed: 56 (tps = 1.836081)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 71.843 ms
+ - latency stddev = 197.711 ms
+
+===== sur / replica rep 3 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2412
+number of failed transactions: 0 (0.000%)
+latency average = 2499.717 ms
+latency stddev = 1491.574 ms
+rate limit schedule lag: avg 2119.561 (max 4212.282) ms
+initial connection time = 96.146 ms
+tps = 78.223745 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 133 (targets 13.3% of total)
+ - 352 transactions (14.6% of total)
+ - number of transactions actually processed: 352 (tps = 11.415737)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2941.548 ms
+ - latency stddev = 1551.822 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 133 (targets 13.3% of total)
+ - 321 transactions (13.3% of total)
+ - number of transactions actually processed: 321 (tps = 10.410374)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3082.685 ms
+ - latency stddev = 1572.381 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 212 (targets 21.2% of total)
+ - 489 transactions (20.3% of total)
+ - number of transactions actually processed: 489 (tps = 15.858794)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2176.197 ms
+ - latency stddev = 1428.789 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 121 (targets 12.1% of total)
+ - 295 transactions (12.2% of total)
+ - number of transactions actually processed: 295 (tps = 9.567166)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2406.793 ms
+ - latency stddev = 1410.786 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 61 (targets 6.1% of total)
+ - 149 transactions (6.2% of total)
+ - number of transactions actually processed: 149 (tps = 4.832230)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2315.980 ms
+ - latency stddev = 1394.520 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 152 (targets 15.2% of total)
+ - 341 transactions (14.1% of total)
+ - number of transactions actually processed: 341 (tps = 11.058995)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2447.079 ms
+ - latency stddev = 1416.921 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 30 (targets 3.0% of total)
+ - 68 transactions (2.8% of total)
+ - number of transactions actually processed: 68 (tps = 2.205313)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2228.675 ms
+ - latency stddev = 1429.601 ms
+SQL script 8: /scripts/L1_norte.sql
+ - weight: 159 (targets 15.9% of total)
+ - 397 transactions (16.5% of total)
+ - number of transactions actually processed: 397 (tps = 12.875135)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2264.737 ms
+ - latency stddev = 1385.163 ms
+
+===== sur / replica rep 3 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3830
+number of failed transactions: 0 (0.000%)
+latency average = 1.488 ms
+latency stddev = 1.577 ms
+rate limit schedule lag: avg 0.213 (max 6.072) ms
+initial connection time = 98.879 ms
+tps = 128.133834 (without initial connection time)
+SQL script 1: /scripts/L1_sur.sql
+ - weight: 412 (targets 41.2% of total)
+ - 1579 transactions (41.2% of total)
+ - number of transactions actually processed: 1579 (tps = 52.825933)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.712 ms
+ - latency stddev = 0.885 ms
+SQL script 2: /scripts/L2_sur.sql
+ - weight: 235 (targets 23.5% of total)
+ - 911 transactions (23.8% of total)
+ - number of transactions actually processed: 911 (tps = 30.477787)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.982 ms
+ - latency stddev = 1.776 ms
+SQL script 3: /scripts/E1_sur.sql
+ - weight: 294 (targets 29.4% of total)
+ - 1139 transactions (29.7% of total)
+ - number of transactions actually processed: 1139 (tps = 38.105597)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.053 ms
+ - latency stddev = 1.638 ms
+SQL script 4: /scripts/E2_sur.sql
+ - weight: 59 (targets 5.9% of total)
+ - 201 transactions (5.2% of total)
+ - number of transactions actually processed: 201 (tps = 6.724517)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.149 ms
+ - latency stddev = 1.907 ms
+
+===== sur / replica rep 4 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1562
+number of failed transactions: 0 (0.000%)
+latency average = 60.438 ms
+latency stddev = 164.399 ms
+rate limit schedule lag: avg 0.204 (max 8.063) ms
+initial connection time = 94.141 ms
+tps = 52.230063 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 478 transactions (30.6% of total)
+ - number of transactions actually processed: 478 (tps = 15.983336)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 10.928 ms
+ - latency stddev = 24.888 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 251 transactions (16.1% of total)
+ - number of transactions actually processed: 251 (tps = 8.392923)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 38.934 ms
+ - latency stddev = 78.781 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 126 transactions (8.1% of total)
+ - number of transactions actually processed: 126 (tps = 4.213181)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 14.731 ms
+ - latency stddev = 29.642 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 337 transactions (21.6% of total)
+ - number of transactions actually processed: 337 (tps = 11.268586)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 196.527 ms
+ - latency stddev = 301.683 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 300 transactions (19.2% of total)
+ - number of transactions actually processed: 300 (tps = 10.031382)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 31.924 ms
+ - latency stddev = 64.932 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 70 transactions (4.5% of total)
+ - number of transactions actually processed: 70 (tps = 2.340656)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 24.930 ms
+ - latency stddev = 52.259 ms
+
+===== sur / replica rep 4 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2507
+number of failed transactions: 0 (0.000%)
+latency average = 1478.542 ms
+latency stddev = 1026.541 ms
+rate limit schedule lag: avg 1114.916 (max 3640.827) ms
+initial connection time = 96.658 ms
+tps = 82.072359 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 133 (targets 13.3% of total)
+ - 342 transactions (13.6% of total)
+ - number of transactions actually processed: 342 (tps = 11.196149)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2039.980 ms
+ - latency stddev = 1143.384 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 133 (targets 13.3% of total)
+ - 347 transactions (13.8% of total)
+ - number of transactions actually processed: 347 (tps = 11.359836)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2037.709 ms
+ - latency stddev = 1056.776 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 212 (targets 21.2% of total)
+ - 545 transactions (21.7% of total)
+ - number of transactions actually processed: 545 (tps = 17.841817)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1166.357 ms
+ - latency stddev = 900.907 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 121 (targets 12.1% of total)
+ - 315 transactions (12.6% of total)
+ - number of transactions actually processed: 315 (tps = 10.312243)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1322.305 ms
+ - latency stddev = 939.880 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 61 (targets 6.1% of total)
+ - 125 transactions (5.0% of total)
+ - number of transactions actually processed: 125 (tps = 4.092160)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1197.405 ms
+ - latency stddev = 955.146 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 152 (targets 15.2% of total)
+ - 353 transactions (14.1% of total)
+ - number of transactions actually processed: 353 (tps = 11.556260)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1494.628 ms
+ - latency stddev = 914.402 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 30 (targets 3.0% of total)
+ - 82 transactions (3.3% of total)
+ - number of transactions actually processed: 82 (tps = 2.684457)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1325.709 ms
+ - latency stddev = 850.936 ms
+SQL script 8: /scripts/L1_norte.sql
+ - weight: 159 (targets 15.9% of total)
+ - 397 transactions (15.8% of total)
+ - number of transactions actually processed: 397 (tps = 12.996700)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1163.142 ms
+ - latency stddev = 859.527 ms
+
+===== sur / replica rep 4 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3770
+number of failed transactions: 0 (0.000%)
+latency average = 1.487 ms
+latency stddev = 1.558 ms
+rate limit schedule lag: avg 0.211 (max 8.281) ms
+initial connection time = 96.342 ms
+tps = 126.096690 (without initial connection time)
+SQL script 1: /scripts/L1_sur.sql
+ - weight: 412 (targets 41.2% of total)
+ - 1547 transactions (41.0% of total)
+ - number of transactions actually processed: 1547 (tps = 51.743125)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.715 ms
+ - latency stddev = 0.847 ms
+SQL script 2: /scripts/L2_sur.sql
+ - weight: 235 (targets 23.5% of total)
+ - 916 transactions (24.3% of total)
+ - number of transactions actually processed: 916 (tps = 30.637816)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.992 ms
+ - latency stddev = 1.772 ms
+SQL script 3: /scripts/E1_sur.sql
+ - weight: 294 (targets 29.4% of total)
+ - 1093 transactions (29.0% of total)
+ - number of transactions actually processed: 1093 (tps = 36.558006)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.068 ms
+ - latency stddev = 1.666 ms
+SQL script 4: /scripts/E2_sur.sql
+ - weight: 59 (targets 5.9% of total)
+ - 214 transactions (5.7% of total)
+ - number of transactions actually processed: 214 (tps = 7.157743)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.944 ms
+ - latency stddev = 1.616 ms
+
+===== sur / replica rep 5 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1596
+number of failed transactions: 0 (0.000%)
+latency average = 61.017 ms
+latency stddev = 190.481 ms
+rate limit schedule lag: avg 1.643 (max 270.303) ms
+initial connection time = 108.708 ms
+tps = 53.030837 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 503 transactions (31.5% of total)
+ - number of transactions actually processed: 503 (tps = 16.713353)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 12.668 ms
+ - latency stddev = 33.265 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 227 transactions (14.2% of total)
+ - number of transactions actually processed: 227 (tps = 7.542607)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 42.961 ms
+ - latency stddev = 102.370 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 131 transactions (8.2% of total)
+ - number of transactions actually processed: 131 (tps = 4.352782)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 7.746 ms
+ - latency stddev = 28.566 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 330 transactions (20.7% of total)
+ - number of transactions actually processed: 330 (tps = 10.965023)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 189.638 ms
+ - latency stddev = 363.476 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 342 transactions (21.4% of total)
+ - number of transactions actually processed: 342 (tps = 11.363751)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 44.305 ms
+ - latency stddev = 97.608 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 63 transactions (3.9% of total)
+ - number of transactions actually processed: 63 (tps = 2.093323)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 39.853 ms
+ - latency stddev = 113.024 ms
+
+===== sur / replica rep 5 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 2470
+number of failed transactions: 0 (0.000%)
+latency average = 1179.418 ms
+latency stddev = 1559.874 ms
+rate limit schedule lag: avg 937.936 (max 3942.059) ms
+initial connection time = 105.467 ms
+tps = 80.131296 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 133 (targets 13.3% of total)
+ - 324 transactions (13.1% of total)
+ - number of transactions actually processed: 324 (tps = 10.511150)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1486.138 ms
+ - latency stddev = 1771.481 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 133 (targets 13.3% of total)
+ - 330 transactions (13.4% of total)
+ - number of transactions actually processed: 330 (tps = 10.705801)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1585.818 ms
+ - latency stddev = 1801.296 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 212 (targets 21.2% of total)
+ - 537 transactions (21.7% of total)
+ - number of transactions actually processed: 537 (tps = 17.421257)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1017.224 ms
+ - latency stddev = 1432.931 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 121 (targets 12.1% of total)
+ - 285 transactions (11.5% of total)
+ - number of transactions actually processed: 285 (tps = 9.245919)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1136.844 ms
+ - latency stddev = 1512.226 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 61 (targets 6.1% of total)
+ - 141 transactions (5.7% of total)
+ - number of transactions actually processed: 141 (tps = 4.574297)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 772.113 ms
+ - latency stddev = 1245.885 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 152 (targets 15.2% of total)
+ - 373 transactions (15.1% of total)
+ - number of transactions actually processed: 373 (tps = 12.100799)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1298.468 ms
+ - latency stddev = 1583.095 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 30 (targets 3.0% of total)
+ - 72 transactions (2.9% of total)
+ - number of transactions actually processed: 72 (tps = 2.335811)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1030.350 ms
+ - latency stddev = 1380.662 ms
+SQL script 8: /scripts/L1_norte.sql
+ - weight: 159 (targets 15.9% of total)
+ - 408 transactions (16.5% of total)
+ - number of transactions actually processed: 408 (tps = 13.236263)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 908.580 ms
+ - latency stddev = 1326.022 ms
+
+===== sur / replica rep 5 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3864
+number of failed transactions: 0 (0.000%)
+latency average = 1.231 ms
+latency stddev = 1.347 ms
+rate limit schedule lag: avg 0.161 (max 7.624) ms
+initial connection time = 110.728 ms
+tps = 129.373929 (without initial connection time)
+SQL script 1: /scripts/L1_sur.sql
+ - weight: 412 (targets 41.2% of total)
+ - 1533 transactions (39.7% of total)
+ - number of transactions actually processed: 1533 (tps = 51.327700)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 0.571 ms
+ - latency stddev = 0.648 ms
+SQL script 2: /scripts/L2_sur.sql
+ - weight: 235 (targets 23.5% of total)
+ - 940 transactions (24.3% of total)
+ - number of transactions actually processed: 940 (tps = 31.472954)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.691 ms
+ - latency stddev = 1.707 ms
+SQL script 3: /scripts/E1_sur.sql
+ - weight: 294 (targets 29.4% of total)
+ - 1148 transactions (29.7% of total)
+ - number of transactions actually processed: 1148 (tps = 38.437182)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.696 ms
+ - latency stddev = 1.385 ms
+SQL script 4: /scripts/E2_sur.sql
+ - weight: 59 (targets 5.9% of total)
+ - 243 transactions (6.3% of total)
+ - number of transactions actually processed: 243 (tps = 8.136093)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.409 ms
+ - latency stddev = 1.113 ms
+
+===== sur / replica_sur rep 1 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1560
+number of failed transactions: 0 (0.000%)
+latency average = 137.998 ms
+latency stddev = 342.247 ms
+rate limit schedule lag: avg 12.632 (max 785.871) ms
+initial connection time = 101.643 ms
+tps = 51.355451 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 426 transactions (27.3% of total)
+ - number of transactions actually processed: 426 (tps = 14.023989)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 27.506 ms
+ - latency stddev = 67.178 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 244 transactions (15.6% of total)
+ - number of transactions actually processed: 244 (tps = 8.032519)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 51.506 ms
+ - latency stddev = 129.400 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 135 transactions (8.7% of total)
+ - number of transactions actually processed: 135 (tps = 4.444222)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 36.154 ms
+ - latency stddev = 92.240 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 376 transactions (24.1% of total)
+ - number of transactions actually processed: 376 (tps = 12.377981)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 399.434 ms
+ - latency stddev = 587.544 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 313 transactions (20.1% of total)
+ - number of transactions actually processed: 313 (tps = 10.304010)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 92.822 ms
+ - latency stddev = 165.623 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 66 transactions (4.2% of total)
+ - number of transactions actually processed: 66 (tps = 2.172731)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 104.109 ms
+ - latency stddev = 188.565 ms
+
+===== sur / replica_sur rep 1 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3703
+number of failed transactions: 0 (0.000%)
+latency average = 3222.554 ms
+latency stddev = 2451.610 ms
+rate limit schedule lag: avg 2963.136 (max 9657.995) ms
+initial connection time = 94.674 ms
+tps = 119.406373 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 71 (targets 7.1% of total)
+ - 292 transactions (7.9% of total)
+ - number of transactions actually processed: 292 (tps = 9.415787)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3967.922 ms
+ - latency stddev = 2698.487 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 71 (targets 7.1% of total)
+ - 288 transactions (7.8% of total)
+ - number of transactions actually processed: 288 (tps = 9.286804)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3938.429 ms
+ - latency stddev = 2821.020 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 113 (targets 11.3% of total)
+ - 416 transactions (11.2% of total)
+ - number of transactions actually processed: 416 (tps = 13.414273)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3143.586 ms
+ - latency stddev = 2379.976 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 65 (targets 6.5% of total)
+ - 226 transactions (6.1% of total)
+ - number of transactions actually processed: 226 (tps = 7.287562)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3017.163 ms
+ - latency stddev = 2264.885 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 329 (targets 32.9% of total)
+ - 1184 transactions (32.0% of total)
+ - number of transactions actually processed: 1184 (tps = 38.179083)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2980.299 ms
+ - latency stddev = 2408.977 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 290 transactions (7.8% of total)
+ - number of transactions actually processed: 290 (tps = 9.351296)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3258.824 ms
+ - latency stddev = 2318.928 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 16 (targets 1.6% of total)
+ - 55 transactions (1.5% of total)
+ - number of transactions actually processed: 55 (tps = 1.773522)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3464.879 ms
+ - latency stddev = 2237.798 ms
+SQL script 8: /scripts/L2_sur.sql
+ - weight: 170 (targets 17.0% of total)
+ - 620 transactions (16.7% of total)
+ - number of transactions actually processed: 620 (tps = 19.992425)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3191.610 ms
+ - latency stddev = 2319.319 ms
+SQL script 9: /scripts/L1_norte.sql
+ - weight: 85 (targets 8.5% of total)
+ - 332 transactions (9.0% of total)
+ - number of transactions actually processed: 332 (tps = 10.705621)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3034.658 ms
+ - latency stddev = 2375.998 ms
+
+===== sur / replica_sur rep 1 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1363
+number of failed transactions: 0 (0.000%)
+latency average = 2.294 ms
+latency stddev = 1.886 ms
+rate limit schedule lag: avg 0.229 (max 6.865) ms
+initial connection time = 97.958 ms
+tps = 45.690070 (without initial connection time)
+SQL script 1: /scripts/E1_sur.sql
+ - weight: 833 (targets 83.3% of total)
+ - 1164 transactions (85.4% of total)
+ - number of transactions actually processed: 1164 (tps = 39.019253)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.325 ms
+ - latency stddev = 1.905 ms
+SQL script 2: /scripts/E2_sur.sql
+ - weight: 167 (targets 16.7% of total)
+ - 199 transactions (14.6% of total)
+ - number of transactions actually processed: 199 (tps = 6.670817)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.116 ms
+ - latency stddev = 1.759 ms
+
+===== sur / replica_sur rep 2 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1612
+number of failed transactions: 0 (0.000%)
+latency average = 69.267 ms
+latency stddev = 202.946 ms
+rate limit schedule lag: avg 0.208 (max 6.802) ms
+initial connection time = 97.372 ms
+tps = 52.161992 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 492 transactions (30.5% of total)
+ - number of transactions actually processed: 492 (tps = 15.920409)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 14.811 ms
+ - latency stddev = 28.924 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 242 transactions (15.0% of total)
+ - number of transactions actually processed: 242 (tps = 7.830770)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 19.824 ms
+ - latency stddev = 39.205 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 111 transactions (6.9% of total)
+ - number of transactions actually processed: 111 (tps = 3.591800)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 20.394 ms
+ - latency stddev = 33.160 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 388 transactions (24.1% of total)
+ - number of transactions actually processed: 388 (tps = 12.555120)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 222.665 ms
+ - latency stddev = 364.261 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 307 transactions (19.0% of total)
+ - number of transactions actually processed: 307 (tps = 9.934077)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 25.619 ms
+ - latency stddev = 60.801 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 72 transactions (4.5% of total)
+ - number of transactions actually processed: 72 (tps = 2.329816)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 42.372 ms
+ - latency stddev = 104.625 ms
+
+===== sur / replica_sur rep 2 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4231
+number of failed transactions: 0 (0.000%)
+latency average = 2435.478 ms
+latency stddev = 2005.680 ms
+rate limit schedule lag: avg 2211.109 (max 7215.723) ms
+initial connection time = 99.316 ms
+tps = 135.890215 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 71 (targets 7.1% of total)
+ - 286 transactions (6.8% of total)
+ - number of transactions actually processed: 286 (tps = 9.185677)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3092.243 ms
+ - latency stddev = 2163.647 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 71 (targets 7.1% of total)
+ - 315 transactions (7.4% of total)
+ - number of transactions actually processed: 315 (tps = 10.117092)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3175.154 ms
+ - latency stddev = 2083.108 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 113 (targets 11.3% of total)
+ - 465 transactions (11.0% of total)
+ - number of transactions actually processed: 465 (tps = 14.934755)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2401.262 ms
+ - latency stddev = 2027.550 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 65 (targets 6.5% of total)
+ - 277 transactions (6.5% of total)
+ - number of transactions actually processed: 277 (tps = 8.896618)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2354.884 ms
+ - latency stddev = 1934.006 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 329 (targets 32.9% of total)
+ - 1379 transactions (32.6% of total)
+ - number of transactions actually processed: 1379 (tps = 44.290382)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2281.833 ms
+ - latency stddev = 1985.048 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 343 transactions (8.1% of total)
+ - number of transactions actually processed: 343 (tps = 11.016389)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2582.927 ms
+ - latency stddev = 1979.128 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 16 (targets 1.6% of total)
+ - 65 transactions (1.5% of total)
+ - number of transactions actually processed: 65 (tps = 2.087654)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2079.968 ms
+ - latency stddev = 1705.826 ms
+SQL script 8: /scripts/L2_sur.sql
+ - weight: 170 (targets 17.0% of total)
+ - 745 transactions (17.6% of total)
+ - number of transactions actually processed: 745 (tps = 23.927726)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2233.494 ms
+ - latency stddev = 1918.353 ms
+SQL script 9: /scripts/L1_norte.sql
+ - weight: 85 (targets 8.5% of total)
+ - 356 transactions (8.4% of total)
+ - number of transactions actually processed: 356 (tps = 11.433920)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2301.463 ms
+ - latency stddev = 1892.928 ms
+
+===== sur / replica_sur rep 2 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1339
+number of failed transactions: 0 (0.000%)
+latency average = 2.061 ms
+latency stddev = 1.649 ms
+rate limit schedule lag: avg 0.191 (max 5.585) ms
+initial connection time = 95.517 ms
+tps = 44.784772 (without initial connection time)
+SQL script 1: /scripts/E1_sur.sql
+ - weight: 833 (targets 83.3% of total)
+ - 1117 transactions (83.4% of total)
+ - number of transactions actually processed: 1117 (tps = 37.359664)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.093 ms
+ - latency stddev = 1.694 ms
+SQL script 2: /scripts/E2_sur.sql
+ - weight: 167 (targets 16.7% of total)
+ - 222 transactions (16.6% of total)
+ - number of transactions actually processed: 222 (tps = 7.425108)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.900 ms
+ - latency stddev = 1.390 ms
+
+===== sur / replica_sur rep 3 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1554
+number of failed transactions: 0 (0.000%)
+latency average = 51.062 ms
+latency stddev = 154.296 ms
+rate limit schedule lag: avg 0.190 (max 6.846) ms
+initial connection time = 102.502 ms
+tps = 51.311962 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 435 transactions (28.0% of total)
+ - number of transactions actually processed: 435 (tps = 14.363387)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 10.289 ms
+ - latency stddev = 28.091 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 265 transactions (17.1% of total)
+ - number of transactions actually processed: 265 (tps = 8.750109)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 11.891 ms
+ - latency stddev = 29.110 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 120 transactions (7.7% of total)
+ - number of transactions actually processed: 120 (tps = 3.962314)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 12.228 ms
+ - latency stddev = 26.889 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 357 transactions (23.0% of total)
+ - number of transactions actually processed: 357 (tps = 11.787883)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 166.451 ms
+ - latency stddev = 282.933 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 293 transactions (18.9% of total)
+ - number of transactions actually processed: 293 (tps = 9.674649)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 30.512 ms
+ - latency stddev = 66.313 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 84 transactions (5.4% of total)
+ - number of transactions actually processed: 84 (tps = 2.773620)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 22.529 ms
+ - latency stddev = 51.083 ms
+
+===== sur / replica_sur rep 3 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 4060
+number of failed transactions: 0 (0.000%)
+latency average = 2357.767 ms
+latency stddev = 2176.134 ms
+rate limit schedule lag: avg 2138.344 (max 7527.758) ms
+initial connection time = 106.185 ms
+tps = 132.156524 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 71 (targets 7.1% of total)
+ - 289 transactions (7.1% of total)
+ - number of transactions actually processed: 289 (tps = 9.407201)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3038.422 ms
+ - latency stddev = 2380.715 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 71 (targets 7.1% of total)
+ - 306 transactions (7.5% of total)
+ - number of transactions actually processed: 306 (tps = 9.960566)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3134.815 ms
+ - latency stddev = 2306.125 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 113 (targets 11.3% of total)
+ - 467 transactions (11.5% of total)
+ - number of transactions actually processed: 467 (tps = 15.201255)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2256.828 ms
+ - latency stddev = 2152.545 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 65 (targets 6.5% of total)
+ - 264 transactions (6.5% of total)
+ - number of transactions actually processed: 264 (tps = 8.593429)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2188.525 ms
+ - latency stddev = 2019.493 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 329 (targets 32.9% of total)
+ - 1314 transactions (32.4% of total)
+ - number of transactions actually processed: 1314 (tps = 42.771841)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2208.376 ms
+ - latency stddev = 2163.663 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 370 transactions (9.1% of total)
+ - number of transactions actually processed: 370 (tps = 12.043821)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2320.600 ms
+ - latency stddev = 2100.786 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 16 (targets 1.6% of total)
+ - 67 transactions (1.7% of total)
+ - number of transactions actually processed: 67 (tps = 2.180908)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2663.283 ms
+ - latency stddev = 2259.103 ms
+SQL script 8: /scripts/L2_sur.sql
+ - weight: 170 (targets 17.0% of total)
+ - 652 transactions (16.1% of total)
+ - number of transactions actually processed: 652 (tps = 21.223166)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2240.080 ms
+ - latency stddev = 2106.958 ms
+SQL script 9: /scripts/L1_norte.sql
+ - weight: 85 (targets 8.5% of total)
+ - 330 transactions (8.1% of total)
+ - number of transactions actually processed: 330 (tps = 10.741786)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2138.805 ms
+ - latency stddev = 1987.453 ms
+
+===== sur / replica_sur rep 3 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1355
+number of failed transactions: 0 (0.000%)
+latency average = 2.104 ms
+latency stddev = 1.698 ms
+rate limit schedule lag: avg 0.224 (max 5.740) ms
+initial connection time = 102.450 ms
+tps = 45.382562 (without initial connection time)
+SQL script 1: /scripts/E1_sur.sql
+ - weight: 833 (targets 83.3% of total)
+ - 1138 transactions (84.0% of total)
+ - number of transactions actually processed: 1138 (tps = 38.114654)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.142 ms
+ - latency stddev = 1.730 ms
+SQL script 2: /scripts/E2_sur.sql
+ - weight: 167 (targets 16.7% of total)
+ - 217 transactions (16.0% of total)
+ - number of transactions actually processed: 217 (tps = 7.267908)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1.908 ms
+ - latency stddev = 1.501 ms
+
+===== sur / replica_sur rep 4 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1600
+number of failed transactions: 0 (0.000%)
+latency average = 673.130 ms
+latency stddev = 861.654 ms
+rate limit schedule lag: avg 251.586 (max 1767.035) ms
+initial connection time = 92.744 ms
+tps = 50.462925 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 436 transactions (27.2% of total)
+ - number of transactions actually processed: 436 (tps = 13.751147)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 302.143 ms
+ - latency stddev = 460.003 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 254 transactions (15.9% of total)
+ - number of transactions actually processed: 254 (tps = 8.010989)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 371.658 ms
+ - latency stddev = 479.329 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 138 transactions (8.6% of total)
+ - number of transactions actually processed: 138 (tps = 4.352427)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 379.709 ms
+ - latency stddev = 493.811 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 388 transactions (24.2% of total)
+ - number of transactions actually processed: 388 (tps = 12.237259)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 1549.138 ms
+ - latency stddev = 1116.697 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 328 transactions (20.5% of total)
+ - number of transactions actually processed: 328 (tps = 10.344900)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 504.847 ms
+ - latency stddev = 546.677 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 56 transactions (3.5% of total)
+ - number of transactions actually processed: 56 (tps = 1.766202)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 577.185 ms
+ - latency stddev = 584.513 ms
+
+===== sur / replica_sur rep 4 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3107
+number of failed transactions: 0 (0.000%)
+latency average = 4708.263 ms
+latency stddev = 4182.456 ms
+rate limit schedule lag: avg 4404.058 (max 12757.059) ms
+initial connection time = 91.197 ms
+tps = 98.510060 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 71 (targets 7.1% of total)
+ - 224 transactions (7.2% of total)
+ - number of transactions actually processed: 224 (tps = 7.102109)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5705.604 ms
+ - latency stddev = 4525.931 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 71 (targets 7.1% of total)
+ - 227 transactions (7.3% of total)
+ - number of transactions actually processed: 227 (tps = 7.197227)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5931.248 ms
+ - latency stddev = 4264.186 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 113 (targets 11.3% of total)
+ - 352 transactions (11.3% of total)
+ - number of transactions actually processed: 352 (tps = 11.160457)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4599.907 ms
+ - latency stddev = 4104.227 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 65 (targets 6.5% of total)
+ - 198 transactions (6.4% of total)
+ - number of transactions actually processed: 198 (tps = 6.277757)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4399.742 ms
+ - latency stddev = 4034.584 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 329 (targets 32.9% of total)
+ - 1009 transactions (32.5% of total)
+ - number of transactions actually processed: 1009 (tps = 31.991197)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4473.205 ms
+ - latency stddev = 4137.996 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 256 transactions (8.2% of total)
+ - number of transactions actually processed: 256 (tps = 8.116696)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5023.354 ms
+ - latency stddev = 4352.689 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 16 (targets 1.6% of total)
+ - 68 transactions (2.2% of total)
+ - number of transactions actually processed: 68 (tps = 2.155997)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4831.401 ms
+ - latency stddev = 3850.933 ms
+SQL script 8: /scripts/L2_sur.sql
+ - weight: 170 (targets 17.0% of total)
+ - 495 transactions (15.9% of total)
+ - number of transactions actually processed: 495 (tps = 15.694393)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4448.759 ms
+ - latency stddev = 4005.531 ms
+SQL script 9: /scripts/L1_norte.sql
+ - weight: 85 (targets 8.5% of total)
+ - 276 transactions (8.9% of total)
+ - number of transactions actually processed: 276 (tps = 8.750813)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4304.379 ms
+ - latency stddev = 4090.438 ms
+
+===== sur / replica_sur rep 4 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1370
+number of failed transactions: 0 (0.000%)
+latency average = 2.647 ms
+latency stddev = 2.223 ms
+rate limit schedule lag: avg 0.268 (max 6.666) ms
+initial connection time = 94.351 ms
+tps = 45.821154 (without initial connection time)
+SQL script 1: /scripts/E1_sur.sql
+ - weight: 833 (targets 83.3% of total)
+ - 1165 transactions (85.0% of total)
+ - number of transactions actually processed: 1165 (tps = 38.964704)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.687 ms
+ - latency stddev = 2.239 ms
+SQL script 2: /scripts/E2_sur.sql
+ - weight: 167 (targets 16.7% of total)
+ - 205 transactions (15.0% of total)
+ - number of transactions actually processed: 205 (tps = 6.856450)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.420 ms
+ - latency stddev = 2.114 ms
+
+===== sur / replica_sur rep 5 nodo A =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1545
+number of failed transactions: 0 (0.000%)
+latency average = 102.239 ms
+latency stddev = 269.075 ms
+rate limit schedule lag: avg 3.113 (max 225.460) ms
+initial connection time = 96.651 ms
+tps = 50.616179 (without initial connection time)
+SQL script 1: /scripts/L1_norte.sql
+ - weight: 282 (targets 28.2% of total)
+ - 425 transactions (27.5% of total)
+ - number of transactions actually processed: 425 (tps = 13.923544)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 23.501 ms
+ - latency stddev = 46.425 ms
+SQL script 2: /scripts/L2_norte.sql
+ - weight: 161 (targets 16.1% of total)
+ - 247 transactions (16.0% of total)
+ - number of transactions actually processed: 247 (tps = 8.092036)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 23.974 ms
+ - latency stddev = 54.011 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 137 transactions (8.9% of total)
+ - number of transactions actually processed: 137 (tps = 4.488295)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 25.518 ms
+ - latency stddev = 53.121 ms
+SQL script 4: /scripts/L4_centro.sql
+ - weight: 235 (targets 23.5% of total)
+ - 385 transactions (24.9% of total)
+ - number of transactions actually processed: 385 (tps = 12.613093)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 306.620 ms
+ - latency stddev = 466.714 ms
+SQL script 5: /scripts/E1_norte.sql
+ - weight: 201 (targets 20.1% of total)
+ - 292 transactions (18.9% of total)
+ - number of transactions actually processed: 292 (tps = 9.566294)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 56.956 ms
+ - latency stddev = 109.796 ms
+SQL script 6: /scripts/E2_norte.sql
+ - weight: 40 (targets 4.0% of total)
+ - 57 transactions (3.7% of total)
+ - number of transactions actually processed: 57 (tps = 1.867393)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 66.728 ms
+ - latency stddev = 113.910 ms
+
+===== sur / replica_sur rep 5 nodo B =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 3724
+number of failed transactions: 0 (0.000%)
+latency average = 4254.719 ms
+latency stddev = 2494.733 ms
+rate limit schedule lag: avg 4007.270 (max 7899.641) ms
+initial connection time = 92.569 ms
+tps = 120.629997 (without initial connection time)
+SQL script 1: /scripts/L4_norte.sql
+ - weight: 71 (targets 7.1% of total)
+ - 273 transactions (7.3% of total)
+ - number of transactions actually processed: 273 (tps = 8.843176)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5049.425 ms
+ - latency stddev = 2515.130 ms
+SQL script 2: /scripts/L4_sur.sql
+ - weight: 71 (targets 7.1% of total)
+ - 285 transactions (7.7% of total)
+ - number of transactions actually processed: 285 (tps = 9.231888)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 5072.325 ms
+ - latency stddev = 2509.448 ms
+SQL script 3: /scripts/L1_centro.sql
+ - weight: 113 (targets 11.3% of total)
+ - 431 transactions (11.6% of total)
+ - number of transactions actually processed: 431 (tps = 13.961205)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4026.757 ms
+ - latency stddev = 2454.049 ms
+SQL script 4: /scripts/L2_centro.sql
+ - weight: 65 (targets 6.5% of total)
+ - 260 transactions (7.0% of total)
+ - number of transactions actually processed: 260 (tps = 8.422073)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4599.099 ms
+ - latency stddev = 2354.647 ms
+SQL script 5: /scripts/L1_sur.sql
+ - weight: 329 (targets 32.9% of total)
+ - 1170 transactions (31.4% of total)
+ - number of transactions actually processed: 1170 (tps = 37.899328)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4039.687 ms
+ - latency stddev = 2482.114 ms
+SQL script 6: /scripts/E1_centro.sql
+ - weight: 81 (targets 8.1% of total)
+ - 280 transactions (7.5% of total)
+ - number of transactions actually processed: 280 (tps = 9.069925)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4253.671 ms
+ - latency stddev = 2557.485 ms
+SQL script 7: /scripts/E2_centro.sql
+ - weight: 16 (targets 1.6% of total)
+ - 56 transactions (1.5% of total)
+ - number of transactions actually processed: 56 (tps = 1.813985)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3843.018 ms
+ - latency stddev = 2430.009 ms
+SQL script 8: /scripts/L2_sur.sql
+ - weight: 170 (targets 17.0% of total)
+ - 655 transactions (17.6% of total)
+ - number of transactions actually processed: 655 (tps = 21.217145)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 4179.380 ms
+ - latency stddev = 2389.460 ms
+SQL script 9: /scripts/L1_norte.sql
+ - weight: 85 (targets 8.5% of total)
+ - 313 transactions (8.4% of total)
+ - number of transactions actually processed: 313 (tps = 10.138880)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 3888.527 ms
+ - latency stddev = 2507.449 ms
+
+===== sur / replica_sur rep 5 nodo C =====
+pgbench (18.7 (Debian 18.7-1.pgdg13+5))
+transaction type: multiple scripts
+scaling factor: 1
+query mode: simple
+number of clients: 32
+number of threads: 2
+maximum number of tries: 1
+duration: 30 s
+number of transactions actually processed: 1338
+number of failed transactions: 0 (0.000%)
+latency average = 2.181 ms
+latency stddev = 1.693 ms
+rate limit schedule lag: avg 0.218 (max 7.627) ms
+initial connection time = 92.447 ms
+tps = 44.814791 (without initial connection time)
+SQL script 1: /scripts/E1_sur.sql
+ - weight: 833 (targets 83.3% of total)
+ - 1119 transactions (83.6% of total)
+ - number of transactions actually processed: 1119 (tps = 37.479635)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.186 ms
+ - latency stddev = 1.658 ms
+SQL script 2: /scripts/E2_sur.sql
+ - weight: 167 (targets 16.7% of total)
+ - 219 transactions (16.4% of total)
+ - number of transactions actually processed: 219 (tps = 7.335156)
+ - number of failed transactions: 0 (0.000%)
+ - latency average = 2.157 ms
+ - latency stddev = 1.863 ms

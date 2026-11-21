@@ -1,6 +1,6 @@
 ## Prueba de cambio de carga de trabajo (10.3)
 
- Fabricio Stelman (actividad 10.3)
+*Responsable: Fabricio Stelman (actividad 10.3)*
 
 ### 1. Qué se prueba
 
@@ -70,46 +70,69 @@ A partir de estas mediciones, el script calculó una carga sugerida de `--total 
 
 **Hallazgo crítico de la calibración (problema detectado antes de correr la prueba):**
 
-- **Capacidades bajas y dominancia de L4:** Los nodos soportan entre 102 y 266 ops/s. Esto se explica por **L4**: al ser un barrido completo sobre los fragmentos (`360 000` o `480 000` viajes según la zona) y ejecutarse **en los tres nodos por cada petición**, su peso en CPU es constante sin importar el reparto de tráfico. En `sur / principal`, L4 representa una fracción mucho mayor del total de consultas que reciben A y B (donde el tráfico transaccional cayó) en comparación con C (inundado de consultas rápidas L1/L2/E1), lo que penaliza artificialmente el throughput medido de A y B.
+- **Capacidades bajas, probablemente por L4 (hipótesis, no medida por separado):** Los nodos soportan entre 102 y 266 ops/s. Lo más probable es que se deba a **L4**: al ser un barrido completo sobre los fragmentos (`360 000` o `480 000` viajes según la zona) y ejecutarse **en los tres nodos por cada petición**, su peso en CPU es constante sin importar el reparto de tráfico. En `sur / principal`, L4 representa una fracción mucho mayor del total de consultas que reciben A y B (donde el tráfico transaccional cayó) en comparación con C (inundado de consultas rápidas L1/L2/E1), lo que bajaría el throughput medido de A y B.
 - **El nodo B aparece saturado en todos los escenarios:** Con la sugerencia de `--total 387`, **B supera el 100 % de utilización en las cuatro corridas** (160 % incluso en `base / principal` y 269 % en `sur / replica_sur`). Esto invalida ejecutar `correr` con `--total 387` directamente, ya que B colapsaría antes de permitir observar el comportamiento de C.
 - **Necesidad de ajuste y modo `capacidad`:** Debido a que la capacidad de cada nodo varía según la proporción de L4 en cada corrida, no se puede usar un `--total` fijo basado únicamente en la mezcla `sur / principal`. Por ello se requiere ajustar el script / usar el modo `capacidad` para hallar el techo real de cada corrida paso a paso antes de fijar la carga de `correr`.
 
 ### 5. Resultados medidos
 
-*Pendiente. Llenar con la salida de `py carga_10.3/carga_sur.py capacidad --rep 5 --inicio 60` y `correr --rep 5`.*
+Salidas de `py carga_10.3/carga_sur.py capacidad --rep 5 --inicio 60` y `py carga_10.3/carga_sur.py correr --total 248 --rep 5` (248 ops/s es el 80 % de la máxima de `base / principal`).
 
 **5.1 Carga máxima que sostiene cada corrida (`capacidad`)**
 
-| Corrida | Máxima (ops/s, mediana de 5) | Rango | Nodo(s) que se satura(n) primero |
+| Corrida | Máxima (ops/s, mediana de 5) | Rango | Nodo(s) marcados como saturados en la confirmación |
 |---|---|---|---|
-| `base / principal` | | | |
-| `sur / principal` | | | |
-| `sur / replica` | | | |
-| `sur / replica_sur` | | | |
+| `base / principal` | **310** | 258 a 446 | B y C en 5/5; A en 4/5 |
+| `sur / principal` | **310** | 258 a 372 | C en 5/5; B en 3/5; A en 2/5 |
+| `sur / replica` | **179** | 179 a 215 | B en 5/5 |
+| `sur / replica_sur` | **215** | 179 a 258 | B en 5/5; A en 2/5 |
 
-La precisión es de un paso (×1,2).
+Máximas por repetición (último nivel sin saturación, en ops/s): `base / principal` 310, 372, 446, 310, 258; `sur / principal` 310, 258, 258, 310, 372; `sur / replica` 179, 179, 215, 215, 179; `sur / replica_sur` 215, 215, 258, 179, 215. La precisión es de un paso (×1,2).
 
-**5.2 Latencia bajo una carga fija (`correr`)**
+**5.2 Latencia bajo una carga fija (`correr`, 248 ops/s en total, 5 repeticiones de 30 s)**
 
-Carga usada: total = ___ ops/s (propuesta: el 80 % de la máxima medida de `base / principal`), Sur = 60 %, 30 s por corrida, 5 repeticiones.
+Medianas por nodo. "Ofrecidas" y "logradas" en ops/s; atraso es el atraso respecto de lo programado.
 
-| Corrida | Nodo | Ofrecidas | Logradas | Latencia (ms) | Atraso (ms) | Fallidas |
-|---|---|---|---|---|---|---|
-| `base / principal` | A / B / C | | | | | |
-| `sur / principal` | A / B / C | | | | | |
-| `sur / replica` | A / B / C | | | | | |
-| `sur / replica_sur` | A / B / C | | | | | |
+| Corrida | Nodo | Ofrecidas | Logradas | Latencia (ms) | Atraso (ms) |
+|---|---|---|---|---|---|
+| `base / principal` | A | 83 | 82 | 7,48 | 0,12 |
+| | B | 104 | 103 | 33,66 | 0,29 |
+| | C | 86 | 85 | 5,49 | 0,12 |
+| `sur / principal` | A | 63 | 63 | 7,95 | 0,11 |
+| | B | 65 | 64 | 17,03 | 0,11 |
+| | C | 145 | 145 | 8,46 | 0,12 |
+| `sur / replica` | A | 53 | 53 | 61,02 | 1,64 |
+| | B | 94 | 80 | **1 819,93** | **1 476,30** |
+| | C | 126 | 128 | 1,49 | 0,21 |
+| `sur / replica_sur` | A | 53 | 51 | 102,24 | 3,11 |
+| | B | 175 | 121 | **3 222,55** | **2 963,14** |
+| | C | 45 | 45 | 2,18 | 0,22 |
+
+Costo ponderado por operación (ejecución bajo carga + red de la rúbrica). La red sale del modelo (sección 3); la ejecución sale de `resumen`:
 
 | Corrida | Ejecución (ms) | Red (ms) | Total por operación (ms) |
 |---|---|---|---|
-| `base / principal` | | | |
-| `sur / principal` | | | |
-| `sur / replica` | | | |
-| `sur / replica_sur` | | | |
+| `base / principal` | _de `resumen`_ | 4,5 | |
+| `sur / principal` | _de `resumen`_ | 5,1 | |
+| `sur / replica` | _de `resumen`_ | 3,1 | |
+| `sur / replica_sur` | _de `resumen`_ | 11,4 | |
+
+**Lectura de lo medido**
+
+- **Con Sur al 60 % la capacidad máxima no bajó:** 310 ops/s en la base y 310 en `sur / principal`, con rangos que se solapan (258 a 446 y 258 a 372). Con estos datos no se puede decir que el cambio de carga reduzca lo que sostiene el sistema.
+- **C absorbió el aumento:** pasó de 86 a 145 ops/s ofrecidas y, a 248 ops/s en total, las logró completas con 8,46 ms de latencia mediana y sin atraso. C no se saturó con ese cambio.
+- **Cerca del techo caen los tres nodos a la vez.** Por ejemplo, en `base / principal` rep 1 a 371 ops/s: A 110 de 124, B 111 de 156, C 93 de 128 (logradas de ofrecidas). Esto apunta a un límite compartido del PC, y no a un solo nodo. Por eso la columna "nodo marcado" de 5.1 hay que leerla con cuidado: indica qué nodos estaban saturados en el paso de confirmación, no cuál causó el límite.
+- **La palanca de 8.3 bajó la capacidad:** de 310 a 179 ops/s (`sur / replica`). Los rangos no se solapan (258 a 372 contra 179 a 215), así que la diferencia no parece ruido. A 248 ops/s, B quedó sobrecargado: logró 80 de 94 ops/s ofrecidas, con 1,8 s de latencia y 1,5 s de atraso. C quedó liberado (1,49 ms), pero A y B pagaron.
+- **Probable explicación** (la prueba no la aísla): con la lectura en réplicas, B pasa de recibir 26,1 a 37,7 consultas por cada 100 operaciones (sección 3), y dos de los tres barridos de L4 (Norte y Sur) se hacen en B, además de que B aplica la replicación de A y C.
+- **`replica_sur` descarga más a C y sobrecarga más a B:** C baja a 45 ops/s ofrecidas (2,18 ms), pero B recibe 175, logra 121 y llega a 3,2 s de latencia. La capacidad (215, rango 179 a 258) queda por debajo de la de `sur / principal` y se solapa con la de `sur / replica`.
+- **B es el nodo con más latencia ya en la base:** a 248 ops/s tiene 33,66 ms de mediana, frente a 7,48 ms de A y 5,49 ms de C, y 74,57 ms de atraso en la primera repetición. Es consistente con lo que mostró la calibración (sección 4).
 
 ### 6. Conclusión
 
-*A completar con los datos de la sección 5. Responderá: (a) qué nodo limita al sistema antes y después del cambio y si el cuello de botella real está en C o en B; (b) si la palanca de 8.3 (`sur / replica`) aumenta la capacidad total sostenida; (c) qué costo de saturación en B y latencia en Sur introduce `replica_sur`.*
+- **(a) ¿Se sobrecarga C con Sur al 60 %?** No en este escenario. La capacidad máxima fue la misma que en la base (310 ops/s, rangos solapados) y C sostuvo 145 ops/s con 8,46 ms. La hipótesis de 8.1/8.2 no se confirma con esta prueba. Lo que sí cambia es cuánto trabajo recibe C: casi 1,7 veces más consultas, como anticipaba el modelo. El nodo que más latencia tiene, incluso en la base, es B.
+- **(b) ¿Ayuda la palanca de 8.3?** No: mandar L3 y L4 a las réplicas bajó la capacidad de 310 a 179 ops/s, porque la carga se concentra en B. Descarga a C, pero a costa de un cuello de botella en B.
+- **(c) Costo de `replica_sur`:** descarga más a C (45 ops/s), pero B llega a 175 ops/s ofrecidas, logra 121 y sube a 3,2 s de latencia, y la red por operación se estima en 11,4 ms contra 5,1 ms (más que el doble). Además, los clientes de Sur leerían datos posiblemente atrasados.
+- **Qué no se puede concluir:** (1) que la hipótesis sea falsa en un despliegue real, porque los tres nodos comparten PC y se saturan juntos; (2) que L4 sea la causa, porque no se midió por separado; (3) nada sobre la estrategia hash, que no se probó.
 
 ### 7. Limitaciones
 
