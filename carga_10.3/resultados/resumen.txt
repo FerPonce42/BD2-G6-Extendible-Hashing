@@ -1,0 +1,33 @@
+Carga maxima sostenida (mediana de las repeticiones; precision de un paso)
+
+corrida                reps maxima ops/s        rango   nodo(s) que se satura(n) primero
+base / principal          5          310      258-446   B (5/5), C (5/5), A (4/5)
+sur / principal           5          310      258-372   C (5/5), B (3/5), A (2/5)
+sur / replica             5          179      179-215   B (5/5)
+sur / replica_sur         5          215      179-258   B (5/5), A (2/5)
+
+Medianas de las repeticiones. Ofrecidas = operaciones por segundo que el diseno manda a cada nodo.
+
+corrida            nodo    ofrec.  logradas    lat ms  atraso ms atraso max fallidas
+base / principal   A           83        82      7.48       0.12        5.2        0
+base / principal   B          104       103     33.66       0.29       82.4        0
+base / principal   C           86        85      5.49       0.12        5.0        0
+
+sur / principal    A           63        63      7.95       0.11        4.7        0
+sur / principal    B           65        64     17.03       0.11        3.2        0
+sur / principal    C          145       145      8.46       0.12       23.2        0
+
+sur / replica      A           53        53     61.02       1.64      270.3        0
+sur / replica      B           94        80   1819.93    1476.30     4212.3        0
+sur / replica      C          126       128      1.49       0.21        7.6        0
+
+sur / replica_sur  A           53        51    102.24       3.11      225.5        0
+sur / replica_sur  B          175       121   3222.55    2963.14     7899.6        0
+sur / replica_sur  C           45        45      2.18       0.22        6.7        0
+
+Costo ponderado por operacion (ms): ejecucion bajo carga + red supuesta de la rubrica
+corrida                 ejec       red     total
+base / principal       16.13      4.50     20.63
+sur / principal         7.45      5.14     12.59
+sur / replica         570.26      3.10    573.36
+sur / replica_sur    2078.76     11.35   2090.11

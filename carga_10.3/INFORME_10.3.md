@@ -108,14 +108,14 @@ Medianas por nodo. "Ofrecidas" y "logradas" en ops/s; atraso es el atraso respec
 | | B | 175 | 121 | **3 222,55** | **2 963,14** |
 | | C | 45 | 45 | 2,18 | 0,22 |
 
-Costo ponderado por operación (ejecución bajo carga + red de la rúbrica). La red sale del modelo (sección 3); la ejecución sale de `resumen`:
+Costo ponderado por operación (ejecución medida bajo carga + red de la rúbrica; salida de `resumen`). Transacciones fallidas: 0 en las cuatro corridas.
 
 | Corrida | Ejecución (ms) | Red (ms) | Total por operación (ms) |
 |---|---|---|---|
-| `base / principal` | _de `resumen`_ | 4,5 | |
-| `sur / principal` | _de `resumen`_ | 5,1 | |
-| `sur / replica` | _de `resumen`_ | 3,1 | |
-| `sur / replica_sur` | _de `resumen`_ | 11,4 | |
+| `base / principal` | 16,13 | 4,50 | 20,63 |
+| `sur / principal` | 7,45 | 5,14 | 12,59 |
+| `sur / replica` | 570,26 | 3,10 | 573,36 |
+| `sur / replica_sur` | 2 078,76 | 11,35 | 2 090,11 |
 
 **Lectura de lo medido**
 
@@ -125,13 +125,14 @@ Costo ponderado por operación (ejecución bajo carga + red de la rúbrica). La 
 - **La palanca de 8.3 bajó la capacidad:** de 310 a 179 ops/s (`sur / replica`). Los rangos no se solapan (258 a 372 contra 179 a 215), así que la diferencia no parece ruido. A 248 ops/s, B quedó sobrecargado: logró 80 de 94 ops/s ofrecidas, con 1,8 s de latencia y 1,5 s de atraso. C quedó liberado (1,49 ms), pero A y B pagaron.
 - **Probable explicación** (la prueba no la aísla): con la lectura en réplicas, B pasa de recibir 26,1 a 37,7 consultas por cada 100 operaciones (sección 3), y dos de los tres barridos de L4 (Norte y Sur) se hacen en B, además de que B aplica la replicación de A y C.
 - **`replica_sur` descarga más a C y sobrecarga más a B:** C baja a 45 ops/s ofrecidas (2,18 ms), pero B recibe 175, logra 121 y llega a 3,2 s de latencia. La capacidad (215, rango 179 a 258) queda por debajo de la de `sur / principal` y se solapa con la de `sur / replica`.
+- **Costo por operación:** con Sur al 60 % y todo en la principal el costo total fue menor que en la base (12,59 contra 20,63 ms), porque B, que es el nodo más lento en la base, recibe menos tráfico (Centro baja de 40 % a 22,9 %). Con la palanca de 8.3 el costo sube a 573,36 ms, casi todo por la ejecución en B bajo sobrecarga (570,26 ms); con `replica_sur` llega a 2 090,11 ms. La red solo explica 3,1 y 11,4 ms de esos totales.
 - **B es el nodo con más latencia ya en la base:** a 248 ops/s tiene 33,66 ms de mediana, frente a 7,48 ms de A y 5,49 ms de C, y 74,57 ms de atraso en la primera repetición. Es consistente con lo que mostró la calibración (sección 4).
 
 ### 6. Conclusión
 
 - **(a) ¿Se sobrecarga C con Sur al 60 %?** No en este escenario. La capacidad máxima fue la misma que en la base (310 ops/s, rangos solapados) y C sostuvo 145 ops/s con 8,46 ms. La hipótesis de 8.1/8.2 no se confirma con esta prueba. Lo que sí cambia es cuánto trabajo recibe C: casi 1,7 veces más consultas, como anticipaba el modelo. El nodo que más latencia tiene, incluso en la base, es B.
-- **(b) ¿Ayuda la palanca de 8.3?** No: mandar L3 y L4 a las réplicas bajó la capacidad de 310 a 179 ops/s, porque la carga se concentra en B. Descarga a C, pero a costa de un cuello de botella en B.
-- **(c) Costo de `replica_sur`:** descarga más a C (45 ops/s), pero B llega a 175 ops/s ofrecidas, logra 121 y sube a 3,2 s de latencia, y la red por operación se estima en 11,4 ms contra 5,1 ms (más que el doble). Además, los clientes de Sur leerían datos posiblemente atrasados.
+- **(b) ¿Ayuda la palanca de 8.3?** No: mandar L3 y L4 a las réplicas bajó la capacidad de 310 a 179 ops/s, porque la carga se concentra en B. Descarga a C, pero a costa de un cuello de botella en B: a 248 ops/s el costo por operación pasa de 12,59 a 573,36 ms.
+- **(c) Costo de `replica_sur`:** descarga más a C (45 ops/s), pero B llega a 175 ops/s ofrecidas, logra 121 y sube a 3,2 s de latencia, el costo por operación llega a 2 090,11 ms y la red se estima en 11,4 ms contra 5,1 ms (más que el doble). Además, los clientes de Sur leerían datos posiblemente atrasados.
 - **Qué no se puede concluir:** (1) que la hipótesis sea falsa en un despliegue real, porque los tres nodos comparten PC y se saturan juntos; (2) que L4 sea la causa, porque no se midió por separado; (3) nada sobre la estrategia hash, que no se probó.
 
 ### 7. Limitaciones
@@ -140,7 +141,7 @@ Costo ponderado por operación (ejecución bajo carga + red de la rúbrica). La 
 - **La red es supuesta:** Las latencias de red son las definidas por la rúbrica.
 - **Carga programada, no usuarios reales:** Las operaciones llegan a tasa fija (`--rate`), sin tiempo de reflexión ni reintentos.
 - **L4 domina el CPU:** El barrido de L4 sobre tablas de 360k–480k registros consume mucho más CPU que su 5 % nominal y afecta por igual a los tres nodos, enmascarando parcialmente el desbalance por zona.
-- **Primera corrida de `capacidad` descartada:** con pasos de 20 s, umbral de 95 % y sin confirmar, el ruido de `pgbench` (±5-8 % a 10-30 ops/s por nodo) marcaba saturaciones falsas desde 50 ops/s (por ejemplo, C "saturado" con 13 ops/s ofrecidas). Se endureció el criterio (90 %, 30 s, confirmación en 2 intentos) y se repitió; la corrida descartada queda en `resultados_corrida1/`.
+- **Primera corrida de `capacidad` descartada:** con pasos de 20 s, umbral de 95 % y sin confirmar, el ruido de `pgbench` (±5-8 % a 10-30 ops/s por nodo) marcaba saturaciones falsas desde 50 ops/s (por ejemplo, C "saturado" con 13 ops/s ofrecidas). Se endureció el criterio (90 %, 30 s, confirmación en 2 intentos) y se repitió; su salida no se guardó.
 - **Precisión de un paso:** `capacidad` escala la carga en factores de ×1,2 (margen de hasta 20 % entre pasos).
 - **Sin comparación con hash y sin medición de lag de replicación:** No se mide el retraso de replicación lógica en B bajo picos de escritura en C.
 
@@ -154,7 +155,6 @@ Costo ponderado por operación (ejecución bajo carga + red de la rúbrica). La 
 | `carga_10.3/resultados/capacidad.csv` | Un paso de carga por fila y nodo (se crea al correr `capacidad`) |
 | `carga_10.3/resultados/capacidad.txt` | Salida cruda de `pgbench` de cada paso y tabla resumen de `capacidad` |
 | `carga_10.3/resultados/corridas.csv`, `scripts.csv`, `corridas.txt` | Resultados de `correr` (se crean al correr) |
-| `carga_10.3/resultados_corrida1/` | Primera corrida de `capacidad`, descartada por ruido (ver sección 7) |
 | `carga_10.3/resultados/resumen.txt` | Tablas de `resumen` (capacidad máxima, latencias y costo ponderado) |
 
 Con los nodos levantados y cargados con `generador/cargar_distribuido.sh`, desde la raíz del repositorio:
@@ -168,4 +168,11 @@ py carga_10.3/carga_sur.py resumen --total <el mismo>
 ```
 
 ### 9. Uso de IA
-Se utilizó asistencia de IA (Claude y Gemini) para estructurar carga_sur.py, redactar y actualizar este informe a partir de las salidas reales de PowerShell (cargar_distribuido.sh, plan y calibrar) y diagnosticar el sesgo introducido por L4 en la calibración por nodo.
+
+Usé Claude (Anthropic) y Gemini como apoyo para escribir la primera versión de `carga_sur.py`, redactar este informe a partir de las salidas reales de PowerShell
+Lo que hice yo:
+- Levanté los tres nodos de Docker, creé las suscripciones y cargué los 1 200 000 viajes con `generador/cargar_distribuido.sh`.
+- Definí con qué nodos y corridas se obtenía el resultado que pide la 10.3 (las cuatro corridas sobre A, B y C, con Sur al 60 %).
+- Ajusté `carga_sur.py` a partir de lo que fui viendo al correrlo: el modo `capacidad` con confirmación del paso, el criterio de saturación, las repeticiones y los archivos de resultados.
+- Ejecuté `calibrar`, `capacidad` y `correr` (5 repeticiones) en mi PC, y descarté la primera corrida de `capacidad` por ruido.
+- Revisé las salidas y corregí el informe.
