@@ -25,6 +25,7 @@ Cuatro corridas (escenario, politica de lectura):
 Modos:
   plan       muestra cuantas operaciones por segundo recibe cada nodo en cada corrida (sin Docker)
   calibrar   mide cuanto aguanta cada nodo y sugiere --total
+  capacidad  en cada corrida sube la carga total (x1,2 por paso) hasta que algun nodo se satura (confirmado en 2 intentos)
   correr     hace las 4 corridas y guarda los resultados
   resumen    calcula las tablas a partir de los CSV
 
@@ -34,8 +35,9 @@ generador/cargar_distribuido.sh (estrategia por zona). Imagen bd2_g6_nodo (trae 
 Uso (desde la raiz del repositorio):
   py carga_10.3/carga_sur.py plan --total 3000
   py carga_10.3/carga_sur.py calibrar
-  py carga_10.3/carga_sur.py correr --total <el sugerido>
-  py carga_10.3/carga_sur.py resumen
+  py carga_10.3/carga_sur.py capacidad --rep 5
+  py carga_10.3/carga_sur.py correr --total <80 % de la maxima de base/principal> --rep 5
+  py carga_10.3/carga_sur.py resumen --total <el mismo>
 """
 import argparse, collections, csv, os, re, statistics as st, subprocess, sys, tempfile, time
 
@@ -57,6 +59,9 @@ DIR = os.path.join("carga_10.3", "resultados")
 F_CORR = os.path.join(DIR, "corridas.csv")
 F_SCR = os.path.join(DIR, "scripts.csv")
 F_TXT = os.path.join(DIR, "corridas.txt")
+F_CAP = os.path.join(DIR, "capacidad.csv")
+F_CAPTXT = os.path.join(DIR, "capacidad.txt")
+F_RES = os.path.join(DIR, "resumen.txt")
 
 
 # ------------------------------------------------------------------ modelo de carga
@@ -248,6 +253,44 @@ def ejecutar(plan, dur, clientes, usar_tasa=True):
     return out
 
 
+class Tee_append:
+    """Como Tee, pero sobre un archivo ya abierto."""
+    def __init__(self, f):
+        self.f, self.o = f, sys.stdout
+
+    def write(self, x):
+        self.o.write(x); self.f.write(x)
+
+    def flush(self):
+        self.o.flush(); self.f.flush()
+
+
+class Tee:
+    """Escribe en pantalla y en un archivo de texto a la vez."""
+    def __init__(self, ruta):
+        self.f = open(ruta, "w", encoding="utf-8")
+        self.o = sys.stdout
+
+    def write(self, x):
+        self.o.write(x); self.f.write(x)
+
+    def flush(self):
+        self.o.flush(); self.f.flush()
+
+
+def con_copia(ruta, fn, *args):
+    """Ejecuta fn mostrando su salida en pantalla y guardandola en ruta."""
+    os.makedirs(DIR, exist_ok=True)
+    t = Tee(ruta)
+    sys.stdout = t
+    try:
+        fn(*args)
+    finally:
+        sys.stdout = t.o
+        t.f.close()
+    print("Guardado en %s" % ruta)
+
+
 # ------------------------------------------------------------------ modos
 def modo_plan(a):
     print("Operaciones por segundo que recibe cada nodo (total = %g ops/s, Sur = %.0f %%)\n" % (a.total, a.sur * 100))
@@ -284,9 +327,129 @@ def modo_calibrar(a):
         limpiar_cliente(a.cpus)
 
 
+def saturado(plan, res_nodos, umbral_logro, umbral_lag):
+    """Nodos saturados en un paso: logra < umbral_logro de lo ofrecido, atraso > umbral_lag ms o fallas."""
+    malos = {}
+    for n in NODOS:
+        res = res_nodos[n]
+        of = sum(plan[n].values())
+        if res["tps"] is None:
+            malos[n] = "sin salida de pgbench"
+        elif res["tps"] < umbral_logro * of:
+            malos[n] = "logra %.0f %% de lo ofrecido" % (100 * res["tps"] / of)
+        elif (res["lag"] or 0) > umbral_lag:
+            malos[n] = "atraso %.0f ms" % res["lag"]
+        elif res["fallidas"] > 0:
+            malos[n] = "%d fallidas" % res["fallidas"]
+    return malos
+
+
+def modo_capacidad(a):
+    os.makedirs(DIR, exist_ok=True)
+    rg = rangos()
+    preparar_cliente(rg, a.cpus)
+    cf = open(F_CAP, "w", newline="")
+    w = csv.writer(cf)
+    w.writerow(["escenario", "politica", "rep", "paso", "total_ops", "nodo", "ofrecidas", "tps", "lat_ms",
+                "lag_ms", "lagmax_ms", "fallidas", "saturado", "motivo"])
+    ct = open(F_CAPTXT, "w", encoding="utf-8")
+    ct.write("10.3 capacidad - %s - sur=%g inicio=%g factor=%g dur_paso=%ss rep=%d clientes=%d cpus=%s\n" % (
+        time.strftime("%Y-%m-%d %H:%M:%S"), a.sur, a.inicio, a.factor, a.dur_paso, a.rep, a.clientes, a.cpus))
+    ct.write(run(["docker", "exec", CONT["A"], "pgbench", "--version"]).stdout)
+    try:
+        borrar_prueba_y_esperar()
+        for esc, pol in CORRIDAS:
+            for rep in range(1, a.rep + 1):
+                total, paso, racha = a.inicio, 0, 0
+                print(">>> %s / %s  rep %d/%d: subiendo la carga desde %g ops/s (paso x%.1f, %ds)" % (
+                    esc, pol, rep, a.rep, total, a.factor, a.dur_paso))
+                while paso < a.max_pasos:
+                    paso += 1
+                    plan = tasas(esc, pol, total, a.sur)
+                    out = ejecutar(plan, a.dur_paso, a.clientes)
+                    res = {n: out[n][1] for n in NODOS}
+                    malos = saturado(plan, res, a.umbral, 20.0)
+                    for n in NODOS:
+                        ct.write("\n===== %s / %s rep %d paso %d total %.1f nodo %s =====\n%s" % (
+                            esc, pol, rep, paso, total, n, out[n][0]))
+                    ct.flush()
+                    for n in NODOS:
+                        r = res[n]
+                        w.writerow([esc, pol, rep, paso, "%.1f" % total, n, "%.2f" % sum(plan[n].values()), r["tps"],
+                                    r["lat"], r["lag"], r["lagmax"], r["fallidas"], int(n in malos), malos.get(n, "")])
+                    cf.flush()
+                    print("   total %7.1f ops/s: " % total + "  ".join(
+                        "%s %5.0f/%-5.0f%s" % (n, res[n]["tps"] or 0, sum(plan[n].values()), "*" if n in malos else "")
+                        for n in NODOS))
+                    borrar_prueba_y_esperar()
+                    if malos:
+                        racha += 1
+                        print("   saturado: " + ", ".join("%s (%s)" % (n, m) for n, m in malos.items()))
+                        if racha >= a.confirmar:
+                            break
+                        print("   repito el mismo paso para confirmar (puede ser ruido)")
+                        continue
+                    racha = 0
+                    total *= a.factor
+                else:
+                    print("   AVISO: no se saturo en %d pasos; sube --max_pasos o --inicio" % a.max_pasos)
+    finally:
+        cf.close()
+        limpiar_cliente(a.cpus)
+    try:
+        con_copia_cap = Tee_append(ct)
+        sys.stdout = con_copia_cap
+        ct.write("\n\n===== RESUMEN =====\n")
+        resumen_capacidad()
+    finally:
+        sys.stdout = con_copia_cap.o
+        ct.close()
+
+
+def resumen_capacidad():
+    """Maxima carga sostenida y nodo que se satura primero, por corrida.
+    Un nivel de carga cuenta como saturado solo si todos sus intentos saturaron (se confirma repitiendo)."""
+    if not os.path.exists(F_CAP):
+        return
+    intentos = collections.defaultdict(lambda: collections.defaultdict(lambda: collections.defaultdict(list)))
+    for r in csv.DictReader(open(F_CAP)):
+        intentos[(r["escenario"], r["politica"], int(r["rep"]))][float(r["total_ops"])][int(r["paso"])].append(r)
+    print("Carga maxima sostenida (mediana de las repeticiones; precision de un paso)\n")
+    print("%-20s %6s %12s %12s   %s" % ("corrida", "reps", "maxima ops/s", "rango", "nodo(s) que se satura(n) primero"))
+    for esc, pol in CORRIDAS:
+        maximos, culpables, sin_techo = [], collections.Counter(), 0
+        for (e, p, rep), niveles in intentos.items():
+            if (e, p) != (esc, pol):
+                continue
+            ultimo_ok, culpa = None, None
+            for total in sorted(niveles):
+                ints = niveles[total]
+                if all(any(f["saturado"] == "1" for f in fs) for fs in ints.values()):
+                    ultimo = ints[max(ints)]
+                    culpa = [f["nodo"] for f in ultimo if f["saturado"] == "1"]
+                    break
+                ultimo_ok = total
+            if ultimo_ok is None:
+                sin_techo += 1          # ya saturaba en el primer nivel: el techo esta por debajo de --inicio
+                continue
+            maximos.append(ultimo_ok)
+            for n in culpa or []:
+                culpables[n] += 1
+        if not maximos:
+            print("%-20s %6d %12s %12s   %s" % ("%s / %s" % (esc, pol), sin_techo, "< inicio", "-", "-"))
+            continue
+        extra = "  (+%d rep. sin techo medible)" % sin_techo if sin_techo else ""
+        print("%-20s %6d %12.0f %12s   %s%s" % ("%s / %s" % (esc, pol), len(maximos), st.median(maximos),
+              "%.0f-%.0f" % (min(maximos), max(maximos)),
+              ", ".join("%s (%d/%d)" % (n, c, len(maximos)) for n, c in culpables.most_common()) or "-", extra))
+    print()
+
+
 def modo_correr(a):
     if not a.total:
         sys.exit("Falta --total. Corre primero: py carga_10.3/carga_sur.py calibrar")
+    if a.rep < 5:
+        print("AVISO: la rubrica pide minimo 5 repeticiones por medicion (usa --rep 5 o mas)")
     os.makedirs(DIR, exist_ok=True)
     rg = rangos()
     preparar_cliente(rg, a.cpus)
@@ -327,7 +490,10 @@ def modo_correr(a):
 
 
 def modo_resumen(a):
+    resumen_capacidad()
     if not a.total:
+        if os.path.exists(F_CAP):
+            return
         sys.exit("Falta --total (el mismo de la corrida)")
     g = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in csv.DictReader(open(F_CORR)):
@@ -367,16 +533,25 @@ def modo_resumen(a):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("modo", choices=["plan", "calibrar", "correr", "resumen"])
+    p.add_argument("modo", choices=["plan", "calibrar", "capacidad", "correr", "resumen"])
     p.add_argument("--total", type=float, default=0, help="operaciones por segundo en todo el sistema")
     p.add_argument("--sur", type=float, default=0.6, help="parte del trafico de Sur en el escenario de cambio (0.6)")
     p.add_argument("--dur", type=int, default=30, help="segundos por corrida")
-    p.add_argument("--rep", type=int, default=3, help="repeticiones por corrida")
+    p.add_argument("--rep", type=int, default=5, help="repeticiones por corrida (la rubrica pide minimo 5)")
     p.add_argument("--clientes", type=int, default=32, help="conexiones de pgbench por nodo")
     p.add_argument("--cpus", type=float, default=1.0, help="CPU de cada nodo (docker update --cpus); 0 = sin limite")
     p.add_argument("--util", type=float, default=0.85, help="utilizacion objetivo de C en sur/principal (calibrar)")
+    p.add_argument("--inicio", type=float, default=50, help="capacidad: carga total inicial en ops/s")
+    p.add_argument("--factor", type=float, default=1.2, help="capacidad: factor de subida por paso")
+    p.add_argument("--dur_paso", type=int, default=30, help="capacidad: segundos por paso")
+    p.add_argument("--umbral", type=float, default=0.90, help="capacidad: un nodo se satura si logra menos de esta parte de lo ofrecido")
+    p.add_argument("--confirmar", type=int, default=2, help="capacidad: intentos seguidos que deben saturar para darlo por cierto")
+    p.add_argument("--max_pasos", type=int, default=40, help="capacidad: tope de pasos por busqueda")
     a = p.parse_args()
-    {"plan": modo_plan, "calibrar": modo_calibrar, "correr": modo_correr, "resumen": modo_resumen}[a.modo](a)
+    if a.modo == "resumen":
+        con_copia(F_RES, modo_resumen, a)
+        return
+    {"plan": modo_plan, "calibrar": modo_calibrar, "capacidad": modo_capacidad, "correr": modo_correr}[a.modo](a)
 
 
 if __name__ == "__main__":
